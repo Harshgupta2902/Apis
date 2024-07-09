@@ -17,12 +17,12 @@ app.get("/", (req, res) => {
 });
 
 // Define API endpoints
-app.use("/api/buyback", buybackService);
-app.use("/api/forms", formsService);
-app.use("/api/gmp", gmpService);
 app.use("/api/ipo", ipoService);
 app.use("/api/main", mainService);
 app.use("/api/sme", smeService);
+app.use("/api/gmp", gmpService);
+app.use("/api/buyback", buybackService);
+app.use("/api/forms", formsService);
 app.use("/api/subs", subsService);
 app.use("/api/getDetails", details);
 
