@@ -106,9 +106,9 @@ router.get("/", async (req, res) => {
   try {
     const { link, source_table } = req.query;
 
-    if (!link || !source_table) {
+    if (!link) {
       return res.status(400).json({
-        error: "Please provide both link and source_table parameters",
+        error: "Please provide link",
       });
     }
 
@@ -123,7 +123,7 @@ router.get("/", async (req, res) => {
       tables: priceBandResult,
       slug: slug,
       link: link,
-      table: source_table,
+      // table: source_table,
     };
 
     return res.json(organizedData);
