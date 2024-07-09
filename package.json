@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "start": "node api.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "firebase-admin": "^12.2.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.9.7",
+    "openai": "^4.52.1",
+    "puppeteer": "^22.12.1",
+    "sanitize-html": "^2.13.0"
+  }
+}
