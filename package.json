@@ -1,7 +1,9 @@
 {
   "scripts": {
     "start": "node api.js",
-    "dev": "node api.js"
+    "dev": "node api.js",
+    "build": "node api.js"
+
   },
   "dependencies": {
     "axios": "^1.7.2",
