@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
     const response2 = await axios.get(url2);
     const data2 = await extractData(response2.data);
 
-    const combinedData = { nse: data1, sme: data2 };
+    const combinedData = { ipo_subscription_data: data1, sme_subscription_data: data2 };
 
     res.json(combinedData);
   } catch (error) {

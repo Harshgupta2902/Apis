@@ -26,6 +26,6 @@ app.use("/api/forms", formsService);
 app.use("/api/subs", subsService);
 app.use("/api/getDetails", details);
 
-app.listen(3000, () => {
-  console.log(`Server is running on port ${3000}`);
+app.listen(4000, () => {
+  console.log(`Server is running on port ${4000}`);
 });
