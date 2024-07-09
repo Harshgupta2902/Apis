@@ -14,6 +14,10 @@ const details = require("./details");
 
 const app = express();
 
+app.get("/", (req, res) => {
+  res.send("API is running");
+});
+
 // Define API endpoints
 app.use("/api/buyback", buybackService);
 app.use("/api/forms", formsService);
