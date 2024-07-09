@@ -3,6 +3,7 @@
 const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
+const { generateSlugFromUrl } = require('./utils');
 
 const router = express.Router();
 
@@ -13,7 +14,7 @@ router.get('/', async (req, res) => {
 
     const $ = cheerio.load(html);
 
-    const tableData = [];
+    const smeData = [];
     $('table tbody tr').each((index, element) => {
       const rowData = {};
       $(element).find('td').each((i, td) => {
@@ -27,10 +28,18 @@ router.get('/', async (req, res) => {
           rowData[`Column_${i + 1}`] = $(td).text().trim();
         }
       });
-      tableData.push(rowData);
+      const formattedTable = {
+        company_name: rowData["Column_1"],
+        date: rowData["Column_2"],
+        price: rowData["Column_3"],
+        Platform: rowData["Column_4"],
+        link: rowData["link"],
+        slug: generateSlugFromUrl(`${rowData['link']}`),
+      };
+      smeData.push(formattedTable);
     });
 
-    res.json(tableData.slice(1));
+    res.json({smeData});
   } catch (error) {
     console.error('Error:', error.message);
     res.status(500).json({ error: 'Internal Server Error' });
