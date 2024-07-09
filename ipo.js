@@ -1,58 +1,51 @@
-const express = require('express');
-const axios = require('axios');
-const cheerio = require('cheerio');
+const express = require("express");
+const axios = require("axios");
+const cheerio = require("cheerio");
+const { generateSlugFromUrl } = require("./utils");
 
 const router = express.Router();
 
-
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const url = 'https://ipowatch.in/upcoming-ipo-calendar-ipo-list/';
+    const url = "https://ipowatch.in/upcoming-ipo-calendar-ipo-list/";
     const response = await axios.get(url);
-    const html = response.data;
-    const $ = cheerio.load(html);
+    const $ = cheerio.load(response.data);
 
-    const ipos = [];
+    const upcomingIpos = $("table tbody tr")
+      .slice(1)
+      .map((index, row) => {
+        const columns = $(row).find("td");
+        const company_name = columns.eq(0).text().trim();
+        const link = columns.eq(0).find("a").attr("href");
+        const date = columns.eq(1).text().trim();
+        const size = columns.eq(2).text().trim();
+        const price = columns.eq(3).text().trim();
+        const status = "Upcoming";
+        const fullLink =
+          link && !link.startsWith("http")
+            ? `https://ipowatch.in/${link}`
+            : link;
 
-    $("table tbody tr").each((index, row) => {
-      if (index === 0) {
-        return;
-      }
+        let slug = generateSlugFromUrl(`${fullLink}`); // Ensure to handle empty link gracefully
+        slug = slug === undefined ? null : slug;
 
-      const columns = $(row).find("td");
-      const companyName = columns.eq(0).text().trim();
-      const link = columns.eq(0).find('a').attr('href');
-      const date = columns.eq(1).text().trim();
-      const size = columns.eq(2).text().trim();
-      const price = columns.eq(3).text().trim();
-      const status = "Upcoming";
-      
-      let fullLink = link;
+        return {
+          company_name,
+          date,
+          size,
+          price,
+          status,
+          link: `${fullLink}`,
+          slug,
+        };
+      })
+      .get();
 
-      if (fullLink && !fullLink.startsWith('http')) {
-        fullLink = `https://ipowatch.in/${fullLink}`;
-      }
-
-      const ipoEntry = {
-        companyName,
-        date,
-        size,
-        price,
-        status,
-        link: fullLink
-      };
-
-      if (link) { // Only push IPO entry if link exists
-        ipos.push(ipoEntry);
-      }
-    });
-
-    res.json(ipos);
+    res.json({ upcomingIpos });
   } catch (error) {
-    console.error('Error fetching IPO data:', error.message);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error("Error fetching IPO data:", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
 
 module.exports = router;
