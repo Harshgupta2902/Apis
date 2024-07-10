@@ -3,22 +3,20 @@ const db = require("../firebase");
 const express = require("express");
 const router = express.Router();
 
-
 router.get("/", async (req, res) => {
   try {
     const isins = await fetchISINsFromMySQL();
     let successCount = 0;
 
     for (let isin of isins) {
-      console.log(isin);
-      // try {
-      //   await fetchAndInsertData(isin);
-      //   successCount++;
+      try {
+        await fetchAndInsertData(isin);
+        successCount++;
 
-      //   console.log(`${successCount} Successfully processed ISIN ${isin}`);
-      // } catch (error) {
-      //   console.error(`Failed to process ISIN ${isin}`, error);
-      // }
+        console.log(`${successCount} Successfully processed ISIN ${isin}`);
+      } catch (error) {
+        console.error(`Failed to process ISIN ${isin}`, error);
+      }
     }
     console.log(
       `All ISIN data fetched and inserted or updated successfully. Total ISINs processed: ${successCount}`
