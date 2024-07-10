@@ -1,8 +1,8 @@
-const express = require("express");
 const axios = require("axios");
+const db = require("../firebase");
+const express = require("express");
 const router = express.Router();
-const db = admin.firestore();
-router.use(express.json());
+
 
 router.get("/", async (req, res) => {
   try {
