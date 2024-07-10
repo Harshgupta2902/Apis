@@ -10,6 +10,11 @@ const smeService = require("./ipo/sme");
 const subsService = require("./ipo/subs");
 const details = require("./ipo/details");
 
+const getNav = require("./mf/getNav");
+const insertMfScreener = require("./mf/insertScreener");
+const getisin = require("./mf/getisin");
+const insertNav = require("./mf/insertNav");
+
 const app = express();
 
 app.get("/", (req, res) => {
@@ -26,6 +31,11 @@ app.use("/api/forms", formsService);
 app.use("/api/subs", subsService);
 app.use("/api/getDetails", details);
 
-app.listen(3000, () => {
-  console.log(`Server is running on port ${3000}`);
+app.use("/api/getNav", getNav);
+app.use("/api/insertMfScreener", insertMfScreener);
+app.use("/api/getisin", getisin);
+app.use("/api/insertNav", insertNav);
+
+app.listen(3200, () => {
+  console.log(`Server is running on port ${3200}`);
 });
