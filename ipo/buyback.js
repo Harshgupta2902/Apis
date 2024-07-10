@@ -3,7 +3,7 @@
 const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
-const { generateSlugFromUrl } = require("./utils");
+const { generateSlugFromUrl } = require("../utils");
 
 const router = express.Router();
 
