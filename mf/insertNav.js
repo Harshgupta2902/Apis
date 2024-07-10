@@ -10,14 +10,15 @@ router.get("/", async (req, res) => {
     let successCount = 0;
 
     for (let isin of isins) {
-      try {
-        await fetchAndInsertData(isin.isin);
-        successCount++;
+      console.log(isin);
+      // try {
+      //   await fetchAndInsertData(isin);
+      //   successCount++;
 
-        console.log(`${successCount} Successfully processed ISIN ${isin}`);
-      } catch (error) {
-        console.error(`Failed to process ISIN ${isin}`, error);
-      }
+      //   console.log(`${successCount} Successfully processed ISIN ${isin}`);
+      // } catch (error) {
+      //   console.error(`Failed to process ISIN ${isin}`, error);
+      // }
     }
     console.log(
       `All ISIN data fetched and inserted or updated successfully. Total ISINs processed: ${successCount}`
@@ -31,7 +32,7 @@ router.get("/", async (req, res) => {
 
 const fetchISINsFromMySQL = async () => {
   try {
-    const liveUrl = "https://ipo.onlineinfotech.net/Api/getisin";
+    const liveUrl = "https://apis-iota-five.vercel.app/api/getisin";
     const response = await axios.get(liveUrl);
     console.log(`All ISINs fetched: ${response.data.length}`);
     return response.data;
