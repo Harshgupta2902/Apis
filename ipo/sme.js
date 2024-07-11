@@ -42,7 +42,7 @@ router.get("/", async (req, res) => {
       };
       smeData.push(formattedTable);
     });
-
+    smeData.shift();
     res.json({ smeData });
   } catch (error) {
     console.error("Error:", error.message);
