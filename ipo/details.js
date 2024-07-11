@@ -112,9 +112,11 @@ router.get("/", async (req, res) => {
       });
     }
 
-    const priceBandResult = await PriceBandtable(link);
-    const ulAfterHeadingsResult = await fetchAllUlAfterHeadings(link);
-    const parsedUrl = url.parse(link);
+    const newlink = `https://ipowatch.in/${link}`;
+
+    const priceBandResult = await PriceBandtable(newlink);
+    const ulAfterHeadingsResult = await fetchAllUlAfterHeadings(newlink);
+    const parsedUrl = url.parse(newlink);
     const pathParts = parsedUrl.pathname.split("/");
     const slug = pathParts[pathParts.length - 2];
 
@@ -122,7 +124,7 @@ router.get("/", async (req, res) => {
       ulAfterHeadingsResult: ulAfterHeadingsResult,
       tables: priceBandResult,
       slug: slug,
-      link: link,
+      link: newlink,
       // table: source_table,
     };
 
