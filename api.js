@@ -45,6 +45,7 @@ const mainService = require("./ipo/main");
 const smeService = require("./ipo/sme");
 const subsService = require("./ipo/subs");
 const details = require("./ipo/details");
+const getAdditionalIpo = require("./ipo/getAdditionalIpo");
 
 const getNav = require("./mf/getNav");
 const insertMfScreener = require("./mf/insertScreener");
@@ -66,6 +67,7 @@ app.use("/api/buyback", cacheMiddleware, buybackService);
 app.use("/api/forms", cacheMiddleware, formsService);
 app.use("/api/subs", cacheMiddleware, subsService);
 app.use("/api/getDetails", cacheMiddleware, details);
+app.use("/api/getAdditionalIpo", cacheMiddleware, getAdditionalIpo);
 
 app.use("/api/getNav", cacheMiddleware, getNav);
 app.use("/api/insertMfScreener", cacheMiddleware, insertMfScreener);
