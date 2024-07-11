@@ -1,5 +1,28 @@
 const cors = require("cors");
 const express = require("express");
+const NodeCache = require("node-cache");
+const cron = require("node-cron");
+
+const cache = new NodeCache({ stdTTL: 3600 }); // cache for 1 hour
+
+const cacheMiddleware = (req, res, next) => {
+  const key = req.originalUrl;
+  const cachedResponse = cache.get(key);
+
+  if (cachedResponse) {
+    console.log(`Cache hit for ${key}`);
+    return res.send(cachedResponse);
+  }
+
+  console.log(`Cache miss for ${key}`);
+  res.originalSend = res.send;
+  res.send = (body) => {
+    cache.set(key, body);
+    console.log(`Cache set for ${key}`);
+    res.originalSend(body);
+  };
+  next();
+};
 
 const app = express();
 app.use(cors());
@@ -35,23 +58,46 @@ app.get("/", (req, res) => {
   res.send("API is running");
 });
 
-app.use("/api/ipo", ipoService);
-app.use("/api/main", mainService);
-app.use("/api/sme", smeService);
-app.use("/api/gmp", gmpService);
-app.use("/api/buyback", buybackService);
-app.use("/api/forms", formsService);
-app.use("/api/subs", subsService);
-app.use("/api/getDetails", details);
+app.use("/api/ipo", cacheMiddleware, ipoService);
+app.use("/api/main", cacheMiddleware, mainService);
+app.use("/api/sme", cacheMiddleware, smeService);
+app.use("/api/gmp", cacheMiddleware, gmpService);
+app.use("/api/buyback", cacheMiddleware, buybackService);
+app.use("/api/forms", cacheMiddleware, formsService);
+app.use("/api/subs", cacheMiddleware, subsService);
+app.use("/api/getDetails", cacheMiddleware, details);
 
-app.use("/api/getNav", getNav);
-app.use("/api/insertMfScreener", insertMfScreener);
-app.use("/api/getisin", getisin);
-app.use("/api/insertNav", insertNav);
+app.use("/api/getNav", cacheMiddleware, getNav);
+app.use("/api/insertMfScreener", cacheMiddleware, insertMfScreener);
+app.use("/api/getisin", cacheMiddleware, getisin);
+app.use("/api/insertNav", cacheMiddleware, insertNav);
 
-app.use("/api/getIndices", getIndices);
-app.use("/api/getTrend", getTrend);
+app.use("/api/getIndices", cacheMiddleware, getIndices);
+app.use("/api/getTrend", cacheMiddleware, getTrend);
 
-app.listen(3001, () => {
-  console.log(`Server is running on port ${3001}`);
+// app.use("/api/ipo", ipoService);
+// app.use("/api/main", mainService);
+// app.use("/api/sme", smeService);
+// app.use("/api/gmp", gmpService);
+// app.use("/api/buyback", buybackService);
+// app.use("/api/forms", formsService);
+// app.use("/api/subs", subsService);
+// app.use("/api/getDetails", details);
+
+// app.use("/api/getNav", getNav);
+// app.use("/api/insertMfScreener", insertMfScreener);
+// app.use("/api/getisin", getisin);
+// app.use("/api/insertNav", insertNav);
+
+// app.use("/api/getIndices", getIndices);
+// app.use("/api/getTrend", getTrend);
+
+
+cron.schedule('0 */2 * * *', () => {
+  console.log("Clearing cache at every 5 min");
+  cache.flushAll();
+});
+
+app.listen(3002, () => {
+  console.log(`Server is running on port ${3002}`);
 });

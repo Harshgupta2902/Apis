@@ -104,7 +104,7 @@ async function fetchAllUlAfterHeadings(link) {
 
 router.get("/", async (req, res) => {
   try {
-    const { link, source_table } = req.query;
+    const { link } = req.query;
 
     if (!link) {
       return res.status(400).json({
