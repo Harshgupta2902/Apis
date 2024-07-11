@@ -1,5 +1,5 @@
 // app.js
-
+const cors = require("cors");
 const express = require("express");
 const ipoService = require("./ipo/ipo");
 const buybackService = require("./ipo/buyback");
@@ -16,6 +16,17 @@ const getisin = require("./mf/getisin");
 const insertNav = require("./mf/insertNav");
 
 const app = express();
+app.use(cors());
+
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, DELETE"
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
 
 app.get("/", (req, res) => {
   res.send("API is running");
@@ -36,6 +47,6 @@ app.use("/api/insertMfScreener", insertMfScreener);
 app.use("/api/getisin", getisin);
 app.use("/api/insertNav", insertNav);
 
-app.listen(3200, () => {
-  console.log(`Server is running on port ${3200}`);
+app.listen(3000, () => {
+  console.log(`Server is running on port ${3000}`);
 });
