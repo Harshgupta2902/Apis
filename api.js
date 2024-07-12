@@ -55,6 +55,9 @@ const insertNav = require("./mf/insertNav");
 const getIndices = require("./others/getIndices");
 const getTrend = require("./others/getTrend");
 
+const insertBlog = require("./blogs/insertBlog");
+const getBlogDetails = require("./blogs/getBlogDetails");
+
 app.get("/", (req, res) => {
   res.send("API is running");
 });
@@ -77,25 +80,10 @@ app.use("/api/insertNav", cacheMiddleware, insertNav);
 app.use("/api/getIndices", cacheMiddleware, getIndices);
 app.use("/api/getTrend", cacheMiddleware, getTrend);
 
-// app.use("/api/ipo", ipoService);
-// app.use("/api/main", mainService);
-// app.use("/api/sme", smeService);
-// app.use("/api/gmp", gmpService);
-// app.use("/api/buyback", buybackService);
-// app.use("/api/forms", formsService);
-// app.use("/api/subs", subsService);
-// app.use("/api/getDetails", details);
+app.use("/api/insertBlog", insertBlog);
+app.use("/api/getBlogDetails",cacheMiddleware, getBlogDetails);
 
-// app.use("/api/getNav", getNav);
-// app.use("/api/insertMfScreener", insertMfScreener);
-// app.use("/api/getisin", getisin);
-// app.use("/api/insertNav", insertNav);
-
-// app.use("/api/getIndices", getIndices);
-// app.use("/api/getTrend", getTrend);
-
-
-cron.schedule('0 */2 * * *', () => {
+cron.schedule("0 */2 * * *", () => {
   console.log("Clearing cache at every 5 min");
   cache.flushAll();
 });
