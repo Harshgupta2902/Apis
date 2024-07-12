@@ -83,8 +83,13 @@ app.use("/api/getTrend", cacheMiddleware, getTrend);
 app.use("/api/insertBlog", insertBlog);
 app.use("/api/getBlogDetails", cacheMiddleware, getBlogDetails);
 
+app.get("/api/clearCache", (req, res) => {
+  cache.flushAll();
+  res.send("Cache cleared successfully");
+});
+
 cron.schedule("0 */2 * * *", () => {
-  console.log("Clearing cache at every 5 min");
+  console.log("Clearing cache at every 2 hour");
   cache.flushAll();
 });
 
