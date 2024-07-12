@@ -81,7 +81,7 @@ app.use("/api/getIndices", cacheMiddleware, getIndices);
 app.use("/api/getTrend", cacheMiddleware, getTrend);
 
 app.use("/api/insertBlog", insertBlog);
-app.use("/api/getBlogDetails",cacheMiddleware, getBlogDetails);
+app.use("/api/getBlogDetails", cacheMiddleware, getBlogDetails);
 
 cron.schedule("0 */2 * * *", () => {
   console.log("Clearing cache at every 5 min");
