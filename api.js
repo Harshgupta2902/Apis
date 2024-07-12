@@ -84,6 +84,7 @@ app.use("/api/insertBlog", insertBlog);
 app.use("/api/getBlogDetails", cacheMiddleware, getBlogDetails);
 
 app.get("/api/clearCache", (req, res) => {
+  console.log("Cache cleared successfully");
   cache.flushAll();
   res.send("Cache cleared successfully");
 });
