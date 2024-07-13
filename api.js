@@ -51,6 +51,7 @@ const getNav = require("./mf/getNav");
 const insertMfScreener = require("./mf/insertScreener");
 const getisin = require("./mf/getisin");
 const insertNav = require("./mf/insertNav");
+const getMfScreener = require("./mf/getMfScreener");
 
 const getIndices = require("./others/getIndices");
 const getTrend = require("./others/getTrend");
@@ -77,11 +78,16 @@ app.use("/api/insertMfScreener", cacheMiddleware, insertMfScreener);
 app.use("/api/getisin", cacheMiddleware, getisin);
 app.use("/api/insertNav", cacheMiddleware, insertNav);
 
+app.use("/api/getMfScreener", cacheMiddleware, getMfScreener);
+
+
 app.use("/api/getIndices", cacheMiddleware, getIndices);
 app.use("/api/getTrend", cacheMiddleware, getTrend);
 
 app.use("/api/insertBlog", insertBlog);
 app.use("/api/getBlogDetails", cacheMiddleware, getBlogDetails);
+
+
 
 app.get("/api/clearCache", (req, res) => {
   console.log("Cache cleared successfully");
@@ -95,5 +101,5 @@ cron.schedule("0 */2 * * *", () => {
 });
 
 app.listen(3002, () => {
-  console.log(`Server is running on port ${3002}`);
+  console.log(`Server is running on http://localhost:${3002}/api`);
 });
