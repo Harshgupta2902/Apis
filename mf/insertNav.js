@@ -64,7 +64,15 @@ const fetchAndInsertData = async (isin) => {
     );
     const apiData = response.data.g1;
 
-    await insertData(isin, apiData);
+    if (apiData && apiData.error_code && apiData.error_msg) {
+      console.error(`API Error for ISIN ${isin}: ${apiData[0].error_msg}`);
+      return;
+    } else {
+      await insertData(isin, apiData);
+    }
+
+
+    // await insertData(isin, apiData);
     console.log(`API data fetched and inserted for ISIN ${isin}`);
   } catch (error) {
     console.error(`Error fetching or inserting data for ISIN ${isin}:`, error);
