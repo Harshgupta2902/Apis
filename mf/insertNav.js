@@ -71,7 +71,6 @@ const fetchAndInsertData = async (isin) => {
       await insertData(isin, apiData);
     }
 
-
     // await insertData(isin, apiData);
     console.log(`API data fetched and inserted for ISIN ${isin}`);
   } catch (error) {
