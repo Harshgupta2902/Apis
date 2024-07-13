@@ -88,7 +88,6 @@ router.post(
         meta_keywords: req.body.meta_keywords,
         author: req.body.author,
         published_at: publishedAt,
-
       };
 
       await db.collection("blogs").doc(blogData.slug).set(blogData);
