@@ -3,10 +3,10 @@ const express = require("express");
 const router = express.Router();
 
 const metadata = {
-  "https://node.onlineinfotech.net/": {
-    title: "Mutual Fund Page",
-    description: "This is the Mutual Fund page.",
-    keywords: ["mutual fund", "investment", "finance"],
+  "/": {
+    title: "Main Page",
+    description: "This is the Main page.",
+    keywords: ["Main", "investment", "finance"],
   },
   "https://node.onlineinfotech.net/ipo/": {
     title: "IPO Page",
