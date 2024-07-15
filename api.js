@@ -60,6 +60,7 @@ const getTrend = require("./others/getTrend");
 
 const insertBlog = require("./blogs/insertBlog");
 const getBlogDetails = require("./blogs/getBlogDetails");
+const getMetaData = require("./meta-data");
 
 app.get("/", (req, res) => {
   res.send("API is running");
@@ -88,6 +89,7 @@ app.use("/api/getTrend", cacheMiddleware, getTrend);
 
 app.use("/api/insertBlog", insertBlog);
 app.use("/api/getBlogDetails", cacheMiddleware, getBlogDetails);
+app.use("/api/meta-data", getMetaData);
 
 app.get("/api/clearCache", (req, res) => {
   console.log("Cache cleared successfully");
