@@ -31,7 +31,7 @@ const getNavData = async (isin) => {
       return doc.data();
     } else {
       const response = await fetchAndInsertData(isin);
-      return response;
+      return response ;
     }
   } catch (error) {
     console.error("Error fetching NAV data:", error);
