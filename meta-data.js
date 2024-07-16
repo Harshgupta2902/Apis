@@ -5,10 +5,46 @@ const cheerio = require("cheerio");
 
 const metadata = {
   "/": {
-    title: "Main Page",
-    description: "This is the Main page.",
-    keywords: ["Main", "investment", "finance"],
+    title: "Explore IpoTech | Recents Ipo, Mutual Funds, and Financial Tools",
+    description:
+      "Explore stocks, direct mutual funds, Mainboard IPOs, SME IPOs, and financial tools like calculators at IpoTech. Discover comprehensive data and insights for informed investing decisions.",
+    keywords: [
+      "upcoming ipo",
+      "ipo",
+      "pre ipo investing",
+      "upcoming ipos",
+      "new ipo stocks",
+      "new ipo",
+      "ipos this week",
+      "upcoming ipos 2024",
+      "best ipo stocks",
+    ],
+    canonical: url,
+    og: {
+      title: "Explore IpoTech | Recents Ipo, Mutual Funds, and Financial Tools",
+      description:
+        "Explore stocks, direct mutual funds, Mainboard IPOs, SME IPOs, and financial tools like calculators at IpoTech. Discover comprehensive data and insights for informed investing decisions.",
+      url: url,
+      type: "Ipo",
+      image: "",
+    },
+    twitter: {
+      card: "",
+      title: "Explore IpoTech | Recents Ipo, Mutual Funds, and Financial Tools",
+      description:
+        "Explore stocks, direct mutual funds, Mainboard IPOs, SME IPOs, and financial tools like calculators at IpoTech. Discover comprehensive data and insights for informed investing decisions.",
+      image: "",
+    },
+    additionalMetaTags: [
+      { name: "author", content: "IpoTech" },
+      { name: "robots", content: "index, follow" },
+      {
+        name: "viewport",
+        content: "width=device-width, initial-scale=1.0",
+      },
+    ],
   },
+
   "https://node.onlineinfotech.net/ipo/": {
     title: "IPO Page",
     description: "This is the IPO page.",
