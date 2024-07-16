@@ -109,6 +109,7 @@ router.get("/", async (req, res) => {
           },
         ],
       };
+      replaceIPOWatchWithIpoTech(metaData);
 
       return res.status(200).json(metaData);
     }
@@ -133,6 +134,45 @@ const fetchData = async (url) => {
     return response.data;
   } catch (error) {
     return { error: error.message };
+  }
+};
+
+const replaceIPOWatchWithIpoTech = (metaData) => {
+  // Replace occurrences of "IPO Watch" with "IpoTech"
+  if (metaData.title) {
+    metaData.title = metaData.title.replace(/IPO Watch/gi, "IpoTech");
+  }
+  if (metaData.description) {
+    metaData.description = metaData.description.replace(
+      /IPO Watch/gi,
+      "IpoTech"
+    );
+  }
+  if (metaData.keywords) {
+    metaData.keywords = metaData.keywords.map((keyword) =>
+      keyword.replace(/IPO Watch/gi, "IpoTech")
+    );
+  }
+  if (metaData.og && metaData.og.title) {
+    metaData.og.title = metaData.og.title.replace(/IPO Watch/gi, "IpoTech");
+  }
+  if (metaData.og && metaData.og.description) {
+    metaData.og.description = metaData.og.description.replace(
+      /IPO Watch/gi,
+      "IpoTech"
+    );
+  }
+  if (metaData.twitter && metaData.twitter.title) {
+    metaData.twitter.title = metaData.twitter.title.replace(
+      /IPO Watch/gi,
+      "IpoTech"
+    );
+  }
+  if (metaData.twitter && metaData.twitter.description) {
+    metaData.twitter.description = metaData.twitter.description.replace(
+      /IPO Watch/gi,
+      "IpoTech"
+    );
   }
 };
 
