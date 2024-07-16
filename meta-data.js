@@ -3,6 +3,8 @@ const axios = require("axios");
 const router = express.Router();
 const cheerio = require("cheerio");
 
+const domain = "https://node.onlineinfotech.net";
+
 const metadata = {
   "/": {
     title: "Explore IpoTech | Recents Ipo, Mutual Funds, and Financial Tools",
@@ -19,12 +21,12 @@ const metadata = {
       "upcoming ipos 2024",
       "best ipo stocks",
     ],
-    canonical: url,
+    canonical: domain,
     og: {
       title: "Explore IpoTech | Recents Ipo, Mutual Funds, and Financial Tools",
       description:
         "Explore stocks, direct mutual funds, Mainboard IPOs, SME IPOs, and financial tools like calculators at IpoTech. Discover comprehensive data and insights for informed investing decisions.",
-      url: url,
+      url: domain,
       type: "Ipo",
       image: "",
     },
