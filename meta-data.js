@@ -1,6 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 const router = express.Router();
+const cheerio = require("cheerio");
 
 const metadata = {
   "/": {
@@ -73,6 +74,45 @@ router.get("/", async (req, res) => {
       };
       return res.status(200).json(metaData);
     }
+
+    if (url.includes("/ipo/details")) {
+      const ipoSlug = url.split("/").pop();
+
+      const response = await axios.get(`https://ipowatch.in/${ipoSlug}`);
+      const html = response.data;
+      const $ = cheerio.load(html);
+
+      const metaData = {
+        title: $("title").text().trim(),
+        description: $("meta[name='description']").attr("content"),
+        keywords: $("meta[name='keywords']").attr("content"),
+        canonical: url,
+        og: {
+          title: $("title").text().trim(),
+          description: $("meta[name='description']").attr("content"),
+          url: url,
+          type: "Ipo",
+          image: $("meta[property='og:image']").attr("content"),
+        },
+        twitter: {
+          card: $("meta[name='twitter:card']").attr("content"),
+          title: $("title").text().trim(),
+          description: $("meta[name='description']").attr("content"),
+          image: $("meta[name='twitter:image']").attr("content"),
+        },
+        additionalMetaTags: [
+          { name: "author", content: "IpoTech" },
+          { name: "robots", content: "index, follow" },
+          {
+            name: "viewport",
+            content: "width=device-width, initial-scale=1.0",
+          },
+        ],
+      };
+
+      return res.status(200).json(metaData);
+    }
+
     const pageMetadata = metadata[url];
 
     if (!pageMetadata) {
@@ -98,6 +138,13 @@ const fetchData = async (url) => {
 
 const getMfSummary = async (mf) => {
   return await fetchData(`https://api.tickertape.in/mutualfunds/${mf}/summary`);
+};
+
+const formatString = (inputString) => {
+  const formattedString = inputString.replace(/-/g, " ");
+  const capitalizedString =
+    formattedString.charAt(0).toUpperCase() + formattedString.slice(1);
+  return capitalizedString;
 };
 
 module.exports = router;
