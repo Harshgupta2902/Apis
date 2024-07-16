@@ -48,22 +48,22 @@ router.get("/", async (req, res) => {
           "high risk mutual funds",
           "debt and equity funds",
         ],
-        canonical: url,
+        canonical: `${url}`,
         og: {
           title: `${meta.fullName} | Investment Details & Analysis`,
           description: `Explore the ${meta.fullName} (${meta.plan} Plan) with comprehensive details on performance, risk classification, benchmark index, and investment strategy. Invest wisely with ${meta.amc}.`,
-          url: url,
-          type: "website",
-          image: "URL_TO_FUND_IMAGE", // Replace with actual image URL
+          url: `${url}`,
+          type: "Mutual Funds",
+          image: "", // Replace with actual image URL
         },
         twitter: {
-          card: "summary_large_image",
+          card: "",
           title: `${meta.fullName} | Investment Details & Analysis`,
           description: `Explore the ${meta.fullName} (${meta.plan} Plan) with comprehensive details on performance, risk classification, benchmark index, and investment strategy. Invest wisely with ${meta.amc}.`,
-          image: "URL_TO_FUND_IMAGE", // Replace with actual image URL
+          image: "", // Replace with actual image URL
         },
         additionalMetaTags: [
-          { name: "author", content: meta.amc },
+          { name: "author", content: "IpoTech" },
           { name: "robots", content: "index, follow" },
           {
             name: "viewport",
