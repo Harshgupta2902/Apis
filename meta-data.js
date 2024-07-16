@@ -40,10 +40,6 @@ const metadata = {
     additionalMetaTags: [
       { name: "author", content: "IpoTech" },
       { name: "robots", content: "index, follow" },
-      {
-        name: "viewport",
-        content: "width=device-width, initial-scale=1.0",
-      },
     ],
   },
 
@@ -104,10 +100,6 @@ router.get("/", async (req, res) => {
         additionalMetaTags: [
           { name: "author", content: "IpoTech" },
           { name: "robots", content: "index, follow" },
-          {
-            name: "viewport",
-            content: "width=device-width, initial-scale=1.0",
-          },
         ],
       };
       return res.status(200).json(metaData);
@@ -141,10 +133,6 @@ router.get("/", async (req, res) => {
         additionalMetaTags: [
           { name: "author", content: "IpoTech" },
           { name: "robots", content: "index, follow" },
-          {
-            name: "viewport",
-            content: "width=device-width, initial-scale=1.0",
-          },
         ],
       };
       replaceIPOWatchWithIpoTech(metaData);
