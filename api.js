@@ -3,7 +3,7 @@ const express = require("express");
 const NodeCache = require("node-cache");
 const cron = require("node-cron");
 
-const cache = new NodeCache({ stdTTL: 3600 }); // cache for 1 hour
+const cache = new NodeCache({ stdTTL: 3600 });
 
 const cacheMiddleware = (req, res, next) => {
   const key = req.originalUrl;
@@ -97,11 +97,32 @@ app.get("/api/clearCache", (req, res) => {
   res.send("Cache cleared successfully");
 });
 
-cron.schedule("0 */2 * * *", () => {
-  console.log("Clearing cache at every 2 hour");
+const cacheKeysToClear = [
+  "/api/ipo",
+  "/api/main",
+  "/api/sme",
+  "/api/gmp",
+  "/api/buyback",
+  "/api/forms",
+  "/api/subs",
+  "/api/getDetails",
+  "/api/getAdditionalIpo",
+];
+
+cron.schedule("0 */6 * * *", () => {
+  console.log("Clearing specific cache keys every 6 hours");
+  cacheKeysToClear.forEach((key) => {
+    cache.del(key);
+    console.log(`Cache cleared for ${key}`);
+  });
+});
+
+cron.schedule("0 6 * * *", () => {
+  console.log("Clearing cache at mornign 6");
   cache.flushAll();
 });
 
-app.listen(3002, () => {
-  console.log(`Server is running on http://localhost:${3002}/api`);
+
+app.listen(3001, () => {
+  console.log(`Server is running on http://localhost:${3001}/api`);
 });
