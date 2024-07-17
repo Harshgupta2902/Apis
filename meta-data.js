@@ -43,16 +43,253 @@ const metadata = {
     ],
   },
 
-  "https://node.onlineinfotech.net/ipo/": {
-    title: "IPO Page",
-    description: "This is the IPO page.",
-    keywords: ["ipo", "initial public offering", "stocks"],
+  "/ipo": {
+    title: "Discover Mainboard and Upcoming Ipos | IpoTech",
+    description:
+      "Explore upcoming IPOs and Mainboard listings on IpoTech. Stay ahead in the market with the latest IPO news and updates. Discover opportunities now!",
+    keywords: [
+      "upcoming ipo",
+      "ipo",
+      "pre ipo investing",
+      "upcoming ipos",
+      "new ipo stocks",
+      "new ipo",
+      "ipos this week",
+      "upcoming ipos 2024",
+      "best ipo stocks",
+    ],
+    canonical: `${domain}/ipo`,
+    og: {
+      title: "Discover Mainboard and Upcoming Ipos | IpoTech",
+      description:
+        "Explore upcoming IPOs and Mainboard listings on IpoTech. Stay ahead in the market with the latest IPO news and updates. Discover opportunities now!",
+      url: `${domain}/ipo`,
+      type: "Ipo",
+      image: "",
+    },
+    twitter: {
+      card: "",
+      title: "Discover Mainboard and Upcoming Ipos | IpoTech",
+      description:
+        "Explore upcoming IPOs and Mainboard listings on IpoTech. Stay ahead in the market with the latest IPO news and updates. Discover opportunities now!",
+      image: "",
+    },
+    additionalMetaTags: [
+      { name: "author", content: "IpoTech" },
+      { name: "robots", content: "index, follow" },
+    ],
   },
 
-  "https://node.onlineinfotech.net/mutual-funds/": {
-    title: "Mutual Fund Page",
-    description: "This is Mutual Fund page.",
-    keywords: ["Mutual Fund", "Mutual Fund", "example"],
+  "/ipo/upcomingIpo": {
+    title: "Discover Mainboard and Upcoming Ipos | IpoTech",
+    description:
+      "Explore upcoming IPOs and Mainboard listings on IpoTech. Stay ahead in the market with the latest IPO news and updates. Discover opportunities now!",
+    keywords: [
+      "upcoming ipo",
+      "ipo",
+      "pre ipo investing",
+      "upcoming ipos",
+      "new ipo stocks",
+      "new ipo",
+      "ipos this week",
+      "upcoming ipos 2024",
+      "best ipo stocks",
+    ],
+    canonical: `${domain}/ipo/upcomingIpo`,
+    og: {
+      title: "Discover Mainboard and Upcoming Ipos | IpoTech",
+      description:
+        "Explore upcoming IPOs and Mainboard listings on IpoTech. Stay ahead in the market with the latest IPO news and updates. Discover opportunities now!",
+      url: `${domain}/ipo/upcomingIpo`,
+      type: "Ipo",
+      image: "",
+    },
+    twitter: {
+      card: "",
+      title: "Discover Mainboard and Upcoming Ipos | IpoTech",
+      description:
+        "Explore upcoming IPOs and Mainboard listings on IpoTech. Stay ahead in the market with the latest IPO news and updates. Discover opportunities now!",
+      image: "",
+    },
+    additionalMetaTags: [
+      { name: "author", content: "IpoTech" },
+      { name: "robots", content: "index, follow" },
+    ],
+  },
+
+  "/ipo/greyMarketIpo": {
+    title: "Live Grey Market Premium of IPOs | IpoTech",
+    description:
+      "Real-time IPO Grey Market Premiums at your fingertips. Stay informed, stay ahead. Evaluate IPOs with accurate market pricing data today!",
+    keywords: [
+      "gmp",
+      "ipo",
+      "grey market premium",
+      "cgmp",
+      "ipo investment",
+      "new ipo stocks",
+      "new ipo",
+      "ipos this week",
+      "upcoming ipos 2024",
+      "best ipo stocks",
+    ],
+    canonical: `${domain}/ipo/greyMarketIpo`,
+    og: {
+      title: "Live Grey Market Premium of IPOs | IpoTech",
+      description:
+        "Real-time IPO Grey Market Premiums at your fingertips. Stay informed, stay ahead. Evaluate IPOs with accurate market pricing data today!",
+      url: `${domain}/ipo/greyMarketIpo`,
+      type: "Ipo",
+      image: "",
+    },
+    twitter: {
+      card: "",
+      title: "Live Grey Market Premium of IPOs | IpoTech",
+      description:
+        "Real-time IPO Grey Market Premiums at your fingertips. Stay informed, stay ahead. Evaluate IPOs with accurate market pricing data today!",
+      image: "",
+    },
+    additionalMetaTags: [
+      { name: "author", content: "IpoTech" },
+      { name: "robots", content: "index, follow" },
+    ],
+  },
+
+  "/ipo/smeMarketIpo": {
+    title: "Expert Advice on SME IPO Applications | IpoTech",
+    description:
+      "Discover the latest IPO details for Small and Medium-sized Enterprises (SME) on our website, providing valuable insights for investors",
+    keywords: [
+      "sme ipo",
+      "sme",
+      "ipo",
+      "sme loans",
+      "sme business loan",
+      "ipo stocks",
+      "upcoming ipos",
+      "pre ipo",
+      "new ipo",
+      "nse sme ipo",
+    ],
+    canonical: `${domain}/ipo/smeMarketIpo`,
+    og: {
+      title: "Expert Advice on SME IPO Applications | IpoTech",
+      description:
+        "Discover the latest IPO details for Small and Medium-sized Enterprises (SME) on our website, providing valuable insights for investors",
+      url: `${domain}/ipo/smeMarketIpo`,
+      type: "Ipo",
+      image: "",
+    },
+    twitter: {
+      card: "",
+      title: "Expert Advice on SME IPO Applications | IpoTech",
+      description:
+        "Discover the latest IPO details for Small and Medium-sized Enterprises (SME) on our website, providing valuable insights for investors",
+      image: "",
+    },
+    additionalMetaTags: [
+      { name: "author", content: "IpoTech" },
+      { name: "robots", content: "index, follow" },
+    ],
+  },
+
+  "/ipo/subscriptionStatus": {
+    title: "IPO Subscription Status - Live from BSE and NSE 2024 | IpoTech",
+    description:
+      "The IPO subscription live status of IPO in 2024. Check how many times Mainboard IPO over-subscribed in QIB, NII and Retail category at BSE, NSE in real-time",
+    keywords: [
+      "ipo subscription status",
+      "ipo subscription",
+      "subscription of ipo",
+      "subscribe",
+      "pre ipo investing",
+    ],
+    canonical: `${domain}/ipo/subscriptionStatus`,
+    og: {
+      title: "IPO Subscription Status - Live from BSE and NSE 2024 | IpoTech",
+      description:
+        "The IPO subscription live status of IPO in 2024. Check how many times Mainboard IPO over-subscribed in QIB, NII and Retail category at BSE, NSE in real-time",
+      url: `${domain}/ipo/subscriptionStatus`,
+      type: "Ipo",
+      image: "",
+    },
+    twitter: {
+      card: "",
+      title: "IPO Subscription Status - Live from BSE and NSE 2024 | IpoTech",
+      description:
+        "The IPO subscription live status of IPO in 2024. Check how many times Mainboard IPO over-subscribed in QIB, NII and Retail category at BSE, NSE in real-time",
+      image: "",
+    },
+    additionalMetaTags: [
+      { name: "author", content: "IpoTech" },
+      { name: "robots", content: "index, follow" },
+    ],
+  },
+
+  "/ipo/ipoForms": {
+    title: "IPO Forms, Download ASBA IPO Forms, BSE & NSE IPO Forms | IpoTech",
+    description:
+      "IPO Forms - Download Mainline IPO and SME IPO forms online. NSE IPO form & BSE IPO form PDF for IPO Application is available for download online",
+    keywords: ["ipo forms", "forms", "download forms", "ipo forms download"],
+    canonical: `${domain}/ipo/ipoForms`,
+    og: {
+      title:
+        "IPO Forms, Download ASBA IPO Forms, BSE & NSE IPO Forms | IpoTech",
+      description:
+        "IPO Forms - Download Mainline IPO and SME IPO forms online. NSE IPO form & BSE IPO form PDF for IPO Application is available for download online",
+      url: `${domain}/ipo/ipoForms`,
+      type: "Ipo",
+      image: "",
+    },
+    twitter: {
+      card: "",
+      title:
+        "IPO Forms, Download ASBA IPO Forms, BSE & NSE IPO Forms | IpoTech",
+      description:
+        "IPO Forms - Download Mainline IPO and SME IPO forms online. NSE IPO form & BSE IPO form PDF for IPO Application is available for download online",
+      image: "",
+    },
+    additionalMetaTags: [
+      { name: "author", content: "IpoTech" },
+      { name: "robots", content: "index, follow" },
+    ],
+  },
+
+  "/ipo/sharesBuyBack": {
+    title: "Upcoming Buyback 2024, Latest Buyback of Shares in India | IpoTech",
+    description:
+      "Share Buyback 2024 - Find the latest share Buyback 2024 offers from the companies with record dates, prices, buyback types and more details ",
+    keywords: [
+      "shares buyback",
+      "ipo",
+      "ipo shares buyback",
+      "buyback of shares",
+      "buyback share",
+      "share buyback",
+      "buyback",
+    ],
+    canonical: `${domain}/ipo/sharesBuyBack`,
+    og: {
+      title:
+        "Upcoming Buyback 2024, Latest Buyback of Shares in India | IpoTech",
+      description:
+        "Share Buyback 2024 - Find the latest share Buyback 2024 offers from the companies with record dates, prices, buyback types and more details ",
+      url: `${domain}/ipo/sharesBuyBack`,
+      type: "Ipo",
+      image: "",
+    },
+    twitter: {
+      card: "",
+      title:
+        "Upcoming Buyback 2024, Latest Buyback of Shares in India | IpoTech",
+      description:
+        "Share Buyback 2024 - Find the latest share Buyback 2024 offers from the companies with record dates, prices, buyback types and more details ",
+      image: "",
+    },
+    additionalMetaTags: [
+      { name: "author", content: "IpoTech" },
+      { name: "robots", content: "index, follow" },
+    ],
   },
 };
 
