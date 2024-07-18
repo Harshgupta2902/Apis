@@ -46,9 +46,9 @@ router.get("/", async (req, res) => {
     const data = {
       info: info.error ? { error: info.error } : info.data,
       summary: summary.error ? { error: summary.error } : summary.data,
-      fundmanager: fundManager.error
-        ? { error: fundManager.error }
-        : fundManager.data,
+      // fundmanager: fundManager.error
+      //   ? { error: fundManager.error }
+      //   : fundManager.data,
       inv_checkList: invChecklist.error
         ? { error: invChecklist.error }
         : invChecklist.data,
