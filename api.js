@@ -122,7 +122,6 @@ cron.schedule("0 6 * * *", () => {
   cache.flushAll();
 });
 
-
 app.listen(3001, () => {
   console.log(`Server is running on http://localhost:${3001}/api`);
 });
