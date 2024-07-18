@@ -7,9 +7,9 @@ const domain = "https://node.onlineinfotech.net";
 
 const metadata = {
   "/": {
-    title: "Explore IpoTech | Recents Ipo, Mutual Funds, and Financial Tools",
+    title: "Explore Recents Ipo, Mutual Funds, and Financial Tools | IpoTech ",
     description:
-      "Explore stocks, direct mutual funds, Mainboard IPOs, SME IPOs, and financial tools like calculators at IpoTech. Discover comprehensive data and insights for informed investing decisions.",
+      "Looking for stocks, mutual funds, IPOs, and calculators? IpoTech provides the data and insights you need to invest wisely. Start exploring now.",
     keywords: [
       "upcoming ipo",
       "ipo",
@@ -23,18 +23,18 @@ const metadata = {
     ],
     canonical: domain,
     og: {
-      title: "Explore IpoTech | Recents Ipo, Mutual Funds, and Financial Tools",
+      title: "Explore Recents Ipo, Mutual Funds, and Financial Tools | IpoTech ",
       description:
-        "Explore stocks, direct mutual funds, Mainboard IPOs, SME IPOs, and financial tools like calculators at IpoTech. Discover comprehensive data and insights for informed investing decisions.",
+        "Looking for stocks, mutual funds, IPOs, and calculators? IpoTech provides the data and insights you need to invest wisely. Start exploring now.",
       url: domain,
       type: "Ipo",
       image: "",
     },
     twitter: {
       card: "",
-      title: "Explore IpoTech | Recents Ipo, Mutual Funds, and Financial Tools",
+      title: "Explore Recents Ipo, Mutual Funds, and Financial Tools | IpoTech ",
       description:
-        "Explore stocks, direct mutual funds, Mainboard IPOs, SME IPOs, and financial tools like calculators at IpoTech. Discover comprehensive data and insights for informed investing decisions.",
+        "Looking for stocks, mutual funds, IPOs, and calculators? IpoTech provides the data and insights you need to invest wisely. Start exploring now.",
       image: "",
     },
     additionalMetaTags: [
