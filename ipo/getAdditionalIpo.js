@@ -20,17 +20,17 @@ router.get("/", async (req, res) => {
 
     // Combine the data
     const combinedData = {
-      upcomingData: ipoResponse.data.upcomingIpos.slice(0,6),
-      gmp: gmpResponse.data.gmp.slice(0,6),
-      buyback: buybackResponse.data.buyback.slice(0,6),
-      sme: smeResponse.data.smeData.slice(0,6),
+      upcomingData: ipoResponse.data.upcomingIpos.slice(0, 6),
+      gmp: gmpResponse.data.gmp.slice(0, 6),
+      buyback: buybackResponse.data.buyback.slice(0, 6),
+      sme: smeResponse.data.smeData.slice(0, 6),
     };
 
     // Send combined response
     res.json(combinedData);
   } catch (error) {
     console.error("Error fetching Additional Ipo Data:", error.message);
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(404).json({ error: "Internal Server Error" });
   }
 });
 

@@ -112,7 +112,7 @@ router.get("/", async (req, res) => {
       });
     }
 
-    if(link.includes("undefined")){
+    if (link.includes("undefined")) {
       return res.status(400).json({
         error: "link is undefined",
       });
@@ -131,8 +131,12 @@ router.get("/", async (req, res) => {
       tables: priceBandResult,
       slug: slug,
       link: newlink,
-      // table: source_table,
     };
+    if (ulAfterHeadingsResult.length > 0 && tables.length > 0) {
+      return res.status(500).json({
+        error: `No Data Found: ${error.message}`,
+      });
+    }
 
     return res.json(organizedData);
   } catch (error) {
