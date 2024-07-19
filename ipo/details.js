@@ -112,6 +112,12 @@ router.get("/", async (req, res) => {
       });
     }
 
+    if(link.includes("undefined")){
+      return res.status(400).json({
+        error: "link is undefined",
+      });
+    }
+
     const newlink = `https://ipowatch.in/${link}`;
 
     const priceBandResult = await PriceBandtable(newlink);
