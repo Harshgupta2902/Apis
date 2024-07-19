@@ -23,7 +23,8 @@ const metadata = {
     ],
     canonical: domain,
     og: {
-      title: "Explore Recents Ipo, Mutual Funds, and Financial Tools | IpoTech ",
+      title:
+        "Explore Recents Ipo, Mutual Funds, and Financial Tools | IpoTech ",
       description:
         "Looking for stocks, mutual funds, IPOs, and calculators? IpoTech provides the data and insights you need to invest wisely. Start exploring now.",
       url: domain,
@@ -32,7 +33,8 @@ const metadata = {
     },
     twitter: {
       card: "",
-      title: "Explore Recents Ipo, Mutual Funds, and Financial Tools | IpoTech ",
+      title:
+        "Explore Recents Ipo, Mutual Funds, and Financial Tools | IpoTech ",
       description:
         "Looking for stocks, mutual funds, IPOs, and calculators? IpoTech provides the data and insights you need to invest wisely. Start exploring now.",
       image: "og:image",
@@ -297,7 +299,12 @@ router.get("/", async (req, res) => {
   try {
     const url = req.query.url;
     if (!url) {
-      return res.status(400).send("Error: 'url' query parameter is required");
+      return res.status(400).send({error: "URL is required"});
+    }
+    if (url.includes("undefined")) {
+      res
+      .status(500)
+      .send({ error: `Metadata not found for the provided URL => ${url}` });
     }
 
     if (url.includes("/mutual-funds/details")) {
@@ -343,6 +350,8 @@ router.get("/", async (req, res) => {
     }
 
     if (url.includes("/ipo/details")) {
+     
+
       const ipoSlug = url.split("/").pop();
 
       const response = await axios.get(`https://ipowatch.in/${ipoSlug}`);
@@ -377,17 +386,19 @@ router.get("/", async (req, res) => {
       return res.status(200).json(metaData);
     }
 
+   
+
     const pageMetadata = metadata[url];
 
     if (!pageMetadata) {
       return res
         .status(404)
-        .send({error: "Metadata not found for the provided URL"});
+        .send({ error: `Metadata not found for the provided URL => ${url}` });
     }
 
     res.status(200).json(pageMetadata);
   } catch (error) {
-    res.status(500).send(`Error: ${error.message}`);
+    res.status(500).send({ error: `Metadata not found for the provided URL => ${url}` });
   }
 });
 
