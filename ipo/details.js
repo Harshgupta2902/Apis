@@ -126,26 +126,26 @@ router.get("/", async (req, res) => {
     const pathParts = parsedUrl.pathname.split("/");
     const slug = pathParts[pathParts.length - 2];
 
-    const organizedData = {
-      ulAfterHeadingsResult: ulAfterHeadingsResult,
-      tables: priceBandResult,
-      slug: slug,
-      link: newlink,
-    };
     if (ulAfterHeadingsResult.length > 0 && tables.length > 0) {
-      return res.status(500).json({
-        error: `No Data Found: ${error.message}`,
-      });
+      const organizedData = {
+        ulAfterHeadingsResult: ulAfterHeadingsResult,
+        tables: priceBandResult,
+        slug: slug,
+        link: newlink,
+      };
+
+      return res.json(organizedData);
     }
 
-    return res.json(organizedData);
+    return res.status(500).json({
+      error: `No Data Found: ${error.message}`,
+    });
   } catch (error) {
     console.error(
       `An error occurred while fetching data for IPO: ${error.message}`
     );
     return res.status(500).json({
       error: `An error occurred while fetching data for IPO: ${error.message}`,
-      link: link,
     });
   }
 });
