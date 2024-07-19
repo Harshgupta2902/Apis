@@ -382,7 +382,7 @@ router.get("/", async (req, res) => {
     if (!pageMetadata) {
       return res
         .status(404)
-        .send("Error: Metadata not found for the provided URL");
+        .send({error: "Metadata not found for the provided URL"});
     }
 
     res.status(200).json(pageMetadata);
