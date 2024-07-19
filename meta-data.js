@@ -28,14 +28,14 @@ const metadata = {
         "Looking for stocks, mutual funds, IPOs, and calculators? IpoTech provides the data and insights you need to invest wisely. Start exploring now.",
       url: domain,
       type: "Ipo",
-      image: "",
+      image: "og:image",
     },
     twitter: {
       card: "",
       title: "Explore Recents Ipo, Mutual Funds, and Financial Tools | IpoTech ",
       description:
         "Looking for stocks, mutual funds, IPOs, and calculators? IpoTech provides the data and insights you need to invest wisely. Start exploring now.",
-      image: "",
+      image: "og:image",
     },
     additionalMetaTags: [
       { name: "author", content: "IpoTech" },
@@ -65,14 +65,14 @@ const metadata = {
         "Explore upcoming IPOs and Mainboard listings on IpoTech. Stay ahead in the market with the latest IPO news and updates. Discover opportunities now!",
       url: `${domain}/ipo`,
       type: "Ipo",
-      image: "",
+      image: "og:image",
     },
     twitter: {
       card: "",
       title: "Discover Mainboard and Upcoming Ipos | IpoTech",
       description:
         "Explore upcoming IPOs and Mainboard listings on IpoTech. Stay ahead in the market with the latest IPO news and updates. Discover opportunities now!",
-      image: "",
+      image: "og:image",
     },
     additionalMetaTags: [
       { name: "author", content: "IpoTech" },
@@ -102,14 +102,14 @@ const metadata = {
         "Explore upcoming IPOs and Mainboard listings on IpoTech. Stay ahead in the market with the latest IPO news and updates. Discover opportunities now!",
       url: `${domain}/ipo/upcomingIpo`,
       type: "Ipo",
-      image: "",
+      image: "og:image",
     },
     twitter: {
       card: "",
       title: "Discover Mainboard and Upcoming Ipos | IpoTech",
       description:
         "Explore upcoming IPOs and Mainboard listings on IpoTech. Stay ahead in the market with the latest IPO news and updates. Discover opportunities now!",
-      image: "",
+      image: "og:image",
     },
     additionalMetaTags: [
       { name: "author", content: "IpoTech" },
@@ -140,14 +140,14 @@ const metadata = {
         "Real-time IPO Grey Market Premiums at your fingertips. Stay informed, stay ahead. Evaluate IPOs with accurate market pricing data today!",
       url: `${domain}/ipo/greyMarketIpo`,
       type: "Ipo",
-      image: "",
+      image: "og:image",
     },
     twitter: {
       card: "",
       title: "Live Grey Market Premium of IPOs | IpoTech",
       description:
         "Real-time IPO Grey Market Premiums at your fingertips. Stay informed, stay ahead. Evaluate IPOs with accurate market pricing data today!",
-      image: "",
+      image: "og:image",
     },
     additionalMetaTags: [
       { name: "author", content: "IpoTech" },
@@ -178,14 +178,14 @@ const metadata = {
         "Discover the latest IPO details for Small and Medium-sized Enterprises (SME) on our website, providing valuable insights for investors",
       url: `${domain}/ipo/smeMarketIpo`,
       type: "Ipo",
-      image: "",
+      image: "og:image",
     },
     twitter: {
       card: "",
       title: "Expert Advice on SME IPO Applications | IpoTech",
       description:
         "Discover the latest IPO details for Small and Medium-sized Enterprises (SME) on our website, providing valuable insights for investors",
-      image: "",
+      image: "og:image",
     },
     additionalMetaTags: [
       { name: "author", content: "IpoTech" },
@@ -211,14 +211,14 @@ const metadata = {
         "The IPO subscription live status of IPO in 2024. Check how many times Mainboard IPO over-subscribed in QIB, NII and Retail category at BSE, NSE in real-time",
       url: `${domain}/ipo/subscriptionStatus`,
       type: "Ipo",
-      image: "",
+      image: "og:image",
     },
     twitter: {
       card: "",
       title: "IPO Subscription Status - Live from BSE and NSE 2024 | IpoTech",
       description:
         "The IPO subscription live status of IPO in 2024. Check how many times Mainboard IPO over-subscribed in QIB, NII and Retail category at BSE, NSE in real-time",
-      image: "",
+      image: "og:image",
     },
     additionalMetaTags: [
       { name: "author", content: "IpoTech" },
@@ -239,7 +239,7 @@ const metadata = {
         "IPO Forms - Download Mainline IPO and SME IPO forms online. NSE IPO form & BSE IPO form PDF for IPO Application is available for download online",
       url: `${domain}/ipo/ipoForms`,
       type: "Ipo",
-      image: "",
+      image: "og:image",
     },
     twitter: {
       card: "",
@@ -247,7 +247,7 @@ const metadata = {
         "IPO Forms, Download ASBA IPO Forms, BSE & NSE IPO Forms | IpoTech",
       description:
         "IPO Forms - Download Mainline IPO and SME IPO forms online. NSE IPO form & BSE IPO form PDF for IPO Application is available for download online",
-      image: "",
+      image: "og:image",
     },
     additionalMetaTags: [
       { name: "author", content: "IpoTech" },
@@ -276,7 +276,7 @@ const metadata = {
         "Share Buyback 2024 - Find the latest share Buyback 2024 offers from the companies with record dates, prices, buyback types and more details ",
       url: `${domain}/ipo/sharesBuyBack`,
       type: "Ipo",
-      image: "",
+      image: "og:image",
     },
     twitter: {
       card: "",
@@ -284,7 +284,7 @@ const metadata = {
         "Upcoming Buyback 2024, Latest Buyback of Shares in India | IpoTech",
       description:
         "Share Buyback 2024 - Find the latest share Buyback 2024 offers from the companies with record dates, prices, buyback types and more details ",
-      image: "",
+      image: "og:image",
     },
     additionalMetaTags: [
       { name: "author", content: "IpoTech" },
@@ -326,13 +326,13 @@ router.get("/", async (req, res) => {
           description: `Explore the ${meta.fullName} (${meta.plan} Plan) with comprehensive details on performance, risk classification, benchmark index, and investment strategy. Invest wisely with ${meta.amc}.`,
           url: `${url}`,
           type: "Mutual Funds",
-          image: "", // Replace with actual image URL
+          image: "og:image", // Replace with actual image URL
         },
         twitter: {
           card: "",
           title: `${meta.fullName} | Investment Details & Analysis`,
           description: `Explore the ${meta.fullName} (${meta.plan} Plan) with comprehensive details on performance, risk classification, benchmark index, and investment strategy. Invest wisely with ${meta.amc}.`,
-          image: "", // Replace with actual image URL
+          image: "og:image", // Replace with actual image URL
         },
         additionalMetaTags: [
           { name: "author", content: "IpoTech" },
