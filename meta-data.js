@@ -299,12 +299,12 @@ router.get("/", async (req, res) => {
   try {
     const url = req.query.url;
     if (!url) {
-      return res.status(400).send({error: "URL is required"});
+      return res.status(400).send({ error: "URL is required" });
     }
     if (url.includes("undefined")) {
       res
-      .status(500)
-      .send({ error: `Metadata not found for the provided URL` });
+        .status(500)
+        .send({ error: `Metadata not found for the provided URL` });
     }
 
     if (url.includes("/mutual-funds/details")) {
@@ -350,8 +350,6 @@ router.get("/", async (req, res) => {
     }
 
     if (url.includes("/ipo/details")) {
-     
-
       const ipoSlug = url.split("/").pop();
 
       const response = await axios.get(`https://ipowatch.in/${ipoSlug}`);
@@ -385,8 +383,6 @@ router.get("/", async (req, res) => {
 
       return res.status(200).json(metaData);
     }
-
-   
 
     const pageMetadata = metadata[url];
 

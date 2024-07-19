@@ -126,7 +126,7 @@ router.get("/", async (req, res) => {
     const pathParts = parsedUrl.pathname.split("/");
     const slug = pathParts[pathParts.length - 2];
 
-    if (ulAfterHeadingsResult.length > 0 && tables.length > 0) {
+    if (ulAfterHeadingsResult.length > 0 && priceBandResult.length > 0) {
       const organizedData = {
         ulAfterHeadingsResult: ulAfterHeadingsResult,
         tables: priceBandResult,
