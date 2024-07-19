@@ -304,7 +304,7 @@ router.get("/", async (req, res) => {
     if (url.includes("undefined")) {
       res
       .status(500)
-      .send({ error: `Metadata not found for the provided URL => ${url}` });
+      .send({ error: `Metadata not found for the provided URL` });
     }
 
     if (url.includes("/mutual-funds/details")) {
@@ -393,12 +393,12 @@ router.get("/", async (req, res) => {
     if (!pageMetadata) {
       return res
         .status(404)
-        .send({ error: `Metadata not found for the provided URL => ${url}` });
+        .send({ error: `Metadata not found for the provided URL` });
     }
 
     res.status(200).json(pageMetadata);
   } catch (error) {
-    res.status(500).send({ error: `Metadata not found for the provided URL => ${url}` });
+    res.status(500).send({ error: `Metadata not found for the provided URL` });
   }
 });
 
