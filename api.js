@@ -63,7 +63,7 @@ const getMfHomePage = require("./mf/getMfHomePage");
 
 const getIndices = require("./others/getIndices");
 const getTrend = require("./others/getTrend");
-const checkPan = require("./others/checkPan");
+// const checkPan = require("./others/checkPan");
 
 const insertBlog = require("./blogs/insertBlog");
 const getBlogDetails = require("./blogs/getBlogDetails");
@@ -93,7 +93,7 @@ app.use("/api/getMfScreener", cacheMiddleware, getMfScreener);
 
 app.use("/api/getIndices", cacheMiddleware, getIndices);
 app.use("/api/getTrend", cacheMiddleware, getTrend);
-app.use("/api/checkPan", cacheMiddleware, checkPan);
+// app.use("/api/checkPan", cacheMiddleware, checkPan);
 
 app.use("/api/insertBlog", insertBlog);
 app.use("/api/getBlogDetails", cacheMiddleware, getBlogDetails);
