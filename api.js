@@ -67,6 +67,9 @@ const getTrend = require("./others/getTrend");
 
 const insertBlog = require("./blogs/insertBlog");
 const getBlogDetails = require("./blogs/getBlogDetails");
+const getblogs = require("./blogs/getblogs");
+
+
 const getMetaData = require("./meta-data");
 
 app.get("/", (req, res) => {
@@ -97,6 +100,9 @@ app.use("/api/getTrend", cacheMiddleware, getTrend);
 
 app.use("/api/insertBlog", insertBlog);
 app.use("/api/getBlogDetails", cacheMiddleware, getBlogDetails);
+app.use("/api/getblogs", cacheMiddleware, getblogs);
+
+
 app.use("/api/meta-data", getMetaData);
 
 app.get("/api/clearCache", (req, res) => {
