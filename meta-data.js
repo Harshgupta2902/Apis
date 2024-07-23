@@ -219,29 +219,6 @@ router.get("/", async (req, res) => {
         .send({ error: `Metadata not found for the provided URL` });
     }
 
-    if (url.includes("/mutual-funds/details")) {
-      const fundSlug = url.split("/").pop();
-      const MfFundCode = fundSlug.split("-").pop();
-
-      const summary = await getMfSummary(MfFundCode);
-      const meta = summary.data.meta;
-      const metaData = {
-        title: `${meta.fullName} | Investment Details and Analysis`,
-        description: `Explore the ${meta.fullName} (${meta.plan} Plan) with comprehensive details on performance, risk classification, benchmark index, and investment strategy. Invest wisely with ${meta.amc}.`,
-        keywords: [
-          meta.fullName,
-          meta.sector,
-          meta.subsector,
-          meta.amc,
-          meta.benchmarkIndex,
-          "mutual fund investment",
-          "high risk mutual funds",
-          "debt and equity funds",
-        ],
-      };
-      return res.status(200).json(metaData);
-    }
-
     if (url.includes("/ipo/details")) {
       const ipoSlug = url.split("/").pop();
 
@@ -325,11 +302,5 @@ const getMfSummary = async (mf) => {
   return await fetchData(`https://api.tickertape.in/mutualfunds/${mf}/summary`);
 };
 
-const formatString = (inputString) => {
-  const formattedString = inputString.replace(/-/g, " ");
-  const capitalizedString =
-    formattedString.charAt(0).toUpperCase() + formattedString.slice(1);
-  return capitalizedString;
-};
 
 module.exports = router;
