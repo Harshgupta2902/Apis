@@ -69,7 +69,6 @@ const insertBlog = require("./blogs/insertBlog");
 const getBlogDetails = require("./blogs/getBlogDetails");
 const getblogs = require("./blogs/getblogs");
 
-
 const getMetaData = require("./meta-data");
 
 app.get("/", (req, res) => {
@@ -102,7 +101,6 @@ app.use("/api/insertBlog", insertBlog);
 app.use("/api/getBlogDetails", cacheMiddleware, getBlogDetails);
 app.use("/api/getblogs", cacheMiddleware, getblogs);
 
-
 app.use("/api/meta-data", getMetaData);
 
 app.get("/api/clearCache", (req, res) => {
@@ -119,7 +117,6 @@ const cacheKeysToClear = [
   "/api/buyback",
   "/api/forms",
   "/api/subs",
-  "/api/getDetails",
   "/api/getAdditionalIpo",
 ];
 
@@ -131,11 +128,11 @@ cron.schedule("0 */6 * * *", () => {
   });
 });
 
-cron.schedule("0 6 * * *", () => {
-  console.log("Clearing cache at mornign 6");
-  cache.flushAll();
-});
+// cron.schedule("0 6 * * *", () => {
+//   console.log("Clearing cache at mornign 6");
+//   cache.flushAll();
+// });
 
-app.listen(3001, () => {
-  console.log(`Server is running on http://localhost:${3001}/api`);
+app.listen(3002, () => {
+  console.log(`Server is running on http://localhost:${3002}/api`);
 });

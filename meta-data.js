@@ -298,9 +298,4 @@ const replaceIPOWatchWithIpoTech = (metaData) => {
   }
 };
 
-const getMfSummary = async (mf) => {
-  return await fetchData(`https://api.tickertape.in/mutualfunds/${mf}/summary`);
-};
-
-
 module.exports = router;
