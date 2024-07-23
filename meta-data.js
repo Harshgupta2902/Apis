@@ -175,6 +175,21 @@ const metadata = {
       "screener tools",
     ],
   },
+
+  "/calculators/lumpsum_calculator": {
+    title: "Lumpsum Calculator: Quick & Easy Investment Planning | IpoTech",
+    description:
+      "Need help with investment planning? Use our easy Lumpsum Calculator for fast calculations and smart financial decisions. Start now!",
+    keywords: [
+      "lumpsum calculator",
+      "mutual fund lumpsum calculator",
+      "lumpsum calculator sbi",
+      "mf lumpsum calculator",
+      "calculators",
+      "investment calculators",
+      "screener tools",
+    ],
+  },
 };
 
 router.get("/", async (req, res) => {
