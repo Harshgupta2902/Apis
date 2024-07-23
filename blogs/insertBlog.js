@@ -3,8 +3,6 @@ const multer = require("multer");
 const sharp = require("sharp");
 const { body, validationResult } = require("express-validator");
 const { db, bucket } = require("../firebase");
-const path = require("path");
-const fs = require("fs");
 const router = express.Router();
 
 // Multer configuration
@@ -53,25 +51,20 @@ router.post(
       const filename = `${altKeyword.replace(" ", "")}${
         req.file.mimetype === "image/png" ? ".png" : ".jpg"
       }`;
-      const tempPath = path.join(__dirname, filename);
 
-      // Resize and compress the image
-      await sharp(imageBuffer)
+      // Resize and compress the image in-memory
+      const processedImageBuffer = await sharp(imageBuffer)
         .resize(800, 600, { fit: "inside" })
         .jpeg({ quality: 90 })
-        .toFile(tempPath);
+        .toBuffer();
 
       // Upload the image to Firebase Storage
-      await bucket.upload(tempPath, {
-        destination: `${filename}`,
-        metadata: {
-          contentType: req.file.mimetype,
-        },
+      const file = bucket.file(filename);
+      await file.save(processedImageBuffer, {
+        metadata: { contentType: req.file.mimetype },
       });
 
       const imageUrl = `https://storage.googleapis.com/${bucket.name}/${filename}`;
-
-      fs.unlinkSync(tempPath);
       const publishedAt = new Date();
 
       const blogData = {
@@ -96,13 +89,11 @@ router.post(
         .status(200)
         .json({ message: "Blog post created successfully", blogData });
     } catch (error) {
-      
       res.status(500).send(`Error: ${error.message}`);
-
     }
   }
 );
-``;
+
 // Function to create slug
 function createSlug(title) {
   return title
