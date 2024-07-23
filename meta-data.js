@@ -176,7 +176,7 @@ const metadata = {
     ],
   },
 
-  "/calculators/swp_calculator": {
+  "/calculators/lumpsum_calculator": {
     title: "Lumpsum Calculator: Quick & Easy Investment Planning | IpoTech",
     description:
       "Need help with investment planning? Use our easy Lumpsum Calculator for fast calculations and smart financial decisions. Start now!",
@@ -191,7 +191,7 @@ const metadata = {
     ],
   },
 
-  "/calculators/sip_calculator": {
+  "/calculators/swp_calculator": {
     title: "SWP Calculator: Maximize Investment Returns Easily | IpoTech",
     description:
       "Want to boost your investment returns? Our SWP calculator makes it simple to plan withdrawals. Get started and optimize your strategy today!",
