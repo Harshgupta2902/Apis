@@ -96,7 +96,9 @@ router.post(
         .status(200)
         .json({ message: "Blog post created successfully", blogData });
     } catch (error) {
+      
       res.status(500).send(`Error: ${error.message}`);
+
     }
   }
 );
