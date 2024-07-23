@@ -176,7 +176,7 @@ const metadata = {
     ],
   },
 
-  "/calculators/lumpsum_calculator": {
+  "/calculators/swp_calculator": {
     title: "Lumpsum Calculator: Quick & Easy Investment Planning | IpoTech",
     description:
       "Need help with investment planning? Use our easy Lumpsum Calculator for fast calculations and smart financial decisions. Start now!",
@@ -185,6 +185,21 @@ const metadata = {
       "mutual fund lumpsum calculator",
       "lumpsum calculator sbi",
       "mf lumpsum calculator",
+      "calculators",
+      "investment calculators",
+      "screener tools",
+    ],
+  },
+
+  "/calculators/sip_calculator": {
+    title: "SWP Calculator: Maximize Investment Returns Easily | IpoTech",
+    description:
+      "Want to boost your investment returns? Our SWP calculator makes it simple to plan withdrawals. Get started and optimize your strategy today!",
+    keywords: [
+      "swp calculator",
+      "mutual fund swp calculator",
+      "swp calculator sbi",
+      "mf swp calculator",
       "calculators",
       "investment calculators",
       "screener tools",
