@@ -143,6 +143,7 @@ const metadata = {
       "hybrid funds",
     ],
   },
+
   "/mutual-funds/screener": {
     title:
       "Explore the Top Mutual Funds: Find the Best Picks Using Our Screening Tool | IpoTech",
@@ -156,6 +157,21 @@ const metadata = {
       "debt funds",
       "hybrid funds",
       "growth funds",
+      "screener tools",
+    ],
+  },
+
+  "/calculators/sip_calculator": {
+    title: "SIP Calculator : Systematic Investment Plan | IpoTech",
+    description:
+      "A SIP calculator helps investors estimate potential returns on their systematic investment plan by inputting investment amount, expected rate of return, and tenure. This tool aids in making informed decisions and setting realistic financial goals for long-term growth!",
+    keywords: [
+      "sip calculator",
+      "mutual fund sip calculator",
+      "sip calculator sbi",
+      "mf sip calculator",
+      "calculators",
+      "investment calculators",
       "screener tools",
     ],
   },
