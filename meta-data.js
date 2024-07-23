@@ -143,6 +143,22 @@ const metadata = {
       "hybrid funds",
     ],
   },
+  "/mutual-funds/screener": {
+    title:
+      "Explore the Top Mutual Funds: Find the Best Picks Using Our Screening Tool | IpoTech",
+    description:
+      "Explore high-performing mutual funds using our advanced screening tool. Utilize filters, conduct comparisons, and confidently make investment choices today!",
+    keywords: [
+      "mutual funds",
+      "stock vs mutual funds",
+      "best mutual funds",
+      "research tool",
+      "debt funds",
+      "hybrid funds",
+      "growth funds",
+      "screener tools",
+    ],
+  },
 };
 
 router.get("/", async (req, res) => {
