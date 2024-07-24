@@ -20,10 +20,18 @@ router.get("/", async (req, res) => {
 
     // Combine the data
     const combinedData = {
-      upcomingData: ipoResponse.data.upcomingIpos.slice(0, 6),
-      gmp: gmpResponse.data.gmp.slice(0, 6),
-      buyback: buybackResponse.data.buyback.slice(0, 6),
-      sme: smeResponse.data.smeData.slice(0, 6),
+      upcomingData: Array.isArray(ipoResponse.data?.upcomingIpos)
+        ? ipoResponse.data.upcomingIpos.slice(0, 6)
+        : [],
+      gmp: Array.isArray(gmpResponse.data?.gmp)
+        ? gmpResponse.data.gmp.slice(0, 6)
+        : [],
+      buyback: Array.isArray(buybackResponse.data?.buyback)
+        ? buybackResponse.data.buyback.slice(0, 6)
+        : [],
+      sme: Array.isArray(smeResponse.data?.smeData)
+        ? smeResponse.data.smeData.slice(0, 6)
+        : [],
     };
 
     // Send combined response
