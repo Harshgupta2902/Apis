@@ -127,7 +127,7 @@ const metadata = {
     ],
   },
 
-  "/mutual-funds": {
+  "/mutualfunds": {
     title: "Top Mutual Funds: Smart Investing for Your Future | IpoTech",
     description:
       "Explore the best mutual funds to grow your savings. Unlock expert insights for smarter investment choices. Invest in your future now!",
@@ -144,7 +144,7 @@ const metadata = {
     ],
   },
 
-  "/mutual-funds/screener": {
+  "/mutualfunds/screener": {
     title:
       "Explore the Top Mutual Funds: Find the Best Picks Using Our Screening Tool | IpoTech",
     description:
@@ -249,15 +249,6 @@ router.get("/", async (req, res) => {
     res.status(500).send({ error: `Metadata not found for the provided URL` });
   }
 });
-
-const fetchData = async (url) => {
-  try {
-    const response = await axios.get(url);
-    return response.data;
-  } catch (error) {
-    return { error: error.message };
-  }
-};
 
 const replaceIPOWatchWithIpoTech = (metaData) => {
   // Replace occurrences of "IPO Watch" with "IpoTech"
