@@ -60,6 +60,7 @@ const insertNav = require("./mf/insertNav");
 
 const getMfScreener = require("./mf/getMfScreener");
 const getMfHomePage = require("./mf/getMfHomePage");
+const getMfLinks = require("./mf/getMfLinks");
 
 const getIndices = require("./others/getIndices");
 const getTrend = require("./others/getTrend");
@@ -92,6 +93,7 @@ app.use("/api/insertNav", cacheMiddleware, insertNav);
 
 app.use("/api/getMfHomePage", cacheMiddleware, getMfHomePage);
 app.use("/api/getMfScreener", cacheMiddleware, getMfScreener);
+app.use("/api/getMfLinks", cacheMiddleware, getMfLinks);
 
 app.use("/api/getIndices", cacheMiddleware, getIndices);
 app.use("/api/getTrend", cacheMiddleware, getTrend);
@@ -133,6 +135,6 @@ cron.schedule("0 */6 * * *", () => {
 //   cache.flushAll();
 // });
 
-app.listen(3002, () => {
-  console.log(`Server is running on http://localhost:${3002}/api`);
+app.listen(3001, () => {
+  console.log(`Server is running on http://localhost:${3001}/api`);
 });
