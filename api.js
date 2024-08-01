@@ -60,7 +60,6 @@ const insertNav = require("./mf/insertNav");
 
 const getMfScreener = require("./mf/getMfScreener");
 const getMfHomePage = require("./mf/getMfHomePage");
-const getMfLinks = require("./mf/getMfLinks");
 
 const getIndices = require("./others/getIndices");
 const getTrend = require("./others/getTrend");
@@ -71,6 +70,10 @@ const getBlogDetails = require("./blogs/getBlogDetails");
 const getblogs = require("./blogs/getblogs");
 
 const getMetaData = require("./meta-data");
+
+const getMfLinks = require("./mf/getMfLinks");
+const getIpoLinks = require("./ipo/getIpoLinks");
+
 
 app.get("/", (req, res) => {
   res.send("API is running");
@@ -93,7 +96,6 @@ app.use("/api/insertNav", cacheMiddleware, insertNav);
 
 app.use("/api/getMfHomePage", cacheMiddleware, getMfHomePage);
 app.use("/api/getMfScreener", cacheMiddleware, getMfScreener);
-app.use("/api/getMfLinks", cacheMiddleware, getMfLinks);
 
 app.use("/api/getIndices", cacheMiddleware, getIndices);
 app.use("/api/getTrend", cacheMiddleware, getTrend);
@@ -104,6 +106,11 @@ app.use("/api/getBlogDetails", cacheMiddleware, getBlogDetails);
 app.use("/api/getblogs", cacheMiddleware, getblogs);
 
 app.use("/api/meta-data", getMetaData);
+
+
+app.use("/api/getMfLinks", cacheMiddleware, getMfLinks);
+app.use("/api/getIpoLinks", cacheMiddleware, getIpoLinks);
+
 
 app.get("/api/clearCache", (req, res) => {
   console.log("Cache cleared successfully");
@@ -120,6 +127,8 @@ const cacheKeysToClear = [
   "/api/forms",
   "/api/subs",
   "/api/getAdditionalIpo",
+  "/api/getMfLinks",
+  ""
 ];
 
 cron.schedule("0 */6 * * *", () => {
@@ -129,6 +138,8 @@ cron.schedule("0 */6 * * *", () => {
     console.log(`Cache cleared for ${key}`);
   });
 });
+
+
 
 // cron.schedule("0 6 * * *", () => {
 //   console.log("Clearing cache at mornign 6");
