@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
       count: 4994,
       mfIds: [],
     });
-    const slugs = response.data.data.result.map((fund) => fund.slug);
+    const slugs = response.data.data.result.map((fund) => fund.slug.replaceAll('/mutualfunds/', ""));
     res.json(slugs);
   } catch (error) {
     res.status(500).json({ error: error.message });
