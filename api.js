@@ -56,8 +56,8 @@ const getAdditionalIpo = require("./ipo/getAdditionalIpo");
 
 const getMfScreener = require("./mf/getMfScreener");
 const getMfDetails = require("./mf/getMfDetails");
+const getNav = require("./mf/getNav");
 
-// const getNav = require("./mf/getNav");
 // const insertMfScreener = require("./mf/insertScreener");
 // const getisin = require("./mf/getisin");
 // const insertNav = require("./mf/insertNav");
@@ -92,13 +92,13 @@ app.use("/api/subs", cacheMiddleware, subsService);
 app.use("/api/getDetails", cacheMiddleware, details);
 app.use("/api/getAdditionalIpo", cacheMiddleware, getAdditionalIpo);
 
-// app.use("/api/getNav", cacheMiddleware, getNav);
 // app.use("/api/insertMfScreener", cacheMiddleware, insertMfScreener);
 // app.use("/api/getisin", cacheMiddleware, getisin);
 // app.use("/api/insertNav", cacheMiddleware, insertNav);
 
 app.use("/api/getMfDetails", cacheMiddleware, getMfDetails);
 app.use("/api/getMfScreener", cacheMiddleware, getMfScreener);
+app.use("/api/getNav", cacheMiddleware, getNav);
 
 app.use("/api/getIndices", cacheMiddleware, getIndices);
 app.use("/api/getTrend", cacheMiddleware, getTrend);
