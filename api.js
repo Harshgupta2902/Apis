@@ -57,6 +57,7 @@ const getAdditionalIpo = require("./ipo/getAdditionalIpo");
 const getMfScreener = require("./mf/getMfScreener");
 const getMfDetails = require("./mf/getMfDetails");
 const getNav = require("./mf/getNav");
+const getMfLinks = require("./mf/getmfLinks");
 
 // const insertMfScreener = require("./mf/insertScreener");
 // const getisin = require("./mf/getisin");
@@ -74,7 +75,6 @@ const getblogs = require("./blogs/getblogs");
 
 const getMetaData = require("./meta-data");
 
-// const getMfLinks = require("./mf/getMfLinks");
 const getIpoLinks = require("./ipo/getIpoLinks");
 
 
@@ -99,6 +99,7 @@ app.use("/api/getAdditionalIpo", cacheMiddleware, getAdditionalIpo);
 app.use("/api/getMfDetails", cacheMiddleware, getMfDetails);
 app.use("/api/getMfScreener", cacheMiddleware, getMfScreener);
 app.use("/api/getNav", cacheMiddleware, getNav);
+app.use("/api/getMfLinks", cacheMiddleware, getMfLinks);
 
 app.use("/api/getIndices", cacheMiddleware, getIndices);
 app.use("/api/getTrend", cacheMiddleware, getTrend);
@@ -111,7 +112,6 @@ app.use("/api/getblogs", cacheMiddleware, getblogs);
 app.use("/api/meta-data", getMetaData);
 
 
-// app.use("/api/getMfLinks", cacheMiddleware, getMfLinks);
 app.use("/api/getIpoLinks", cacheMiddleware, getIpoLinks);
 
 
