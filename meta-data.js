@@ -5,9 +5,9 @@ const cheerio = require("cheerio");
 
 const metadata = {
   "/": {
-    title: "Explore Recents Ipo, Mutual Funds, and Financial Tools | IpoTech ",
+    title: "Explore Recents Ipo, Mutual Funds, and Financial Tools | IpoTec ",
     description:
-      "Looking for stocks, mutual funds, IPOs, and calculators? IpoTech provides the data and insights you need to invest wisely. Start exploring now.",
+      "Looking for stocks, mutual funds, IPOs, and calculators? IpoTec provides the data and insights you need to invest wisely. Start exploring now.",
     keywords: [
       "upcoming ipo",
       "ipo",
@@ -22,9 +22,9 @@ const metadata = {
   },
 
   "/ipo": {
-    title: "Discover Mainboard and Upcoming Ipos | IpoTech",
+    title: "Discover Mainboard and Upcoming Ipos | IpoTec",
     description:
-      "Explore upcoming IPOs and Mainboard listings on IpoTech. Stay ahead in the market with the latest IPO news and updates. Discover opportunities now!",
+      "Explore upcoming IPOs and Mainboard listings on IpoTec. Stay ahead in the market with the latest IPO news and updates. Discover opportunities now!",
     keywords: [
       "upcoming ipo",
       "ipo",
@@ -39,9 +39,9 @@ const metadata = {
   },
 
   "/ipo/upcomingIpo": {
-    title: "Discover Mainboard and Upcoming Ipos | IpoTech",
+    title: "Discover Mainboard and Upcoming Ipos | IpoTec",
     description:
-      "Explore upcoming IPOs and Mainboard listings on IpoTech. Stay ahead in the market with the latest IPO news and updates. Discover opportunities now!",
+      "Explore upcoming IPOs and Mainboard listings on IpoTec. Stay ahead in the market with the latest IPO news and updates. Discover opportunities now!",
     keywords: [
       "upcoming ipo",
       "ipo",
@@ -56,7 +56,7 @@ const metadata = {
   },
 
   "/ipo/greyMarketIpo": {
-    title: "Live Grey Market Premium of IPOs | IpoTech",
+    title: "Live Grey Market Premium of IPOs | IpoTec",
     description:
       "Real-time IPO Grey Market Premiums at your fingertips. Stay informed, stay ahead. Evaluate IPOs with accurate market pricing data today!",
     keywords: [
@@ -74,7 +74,7 @@ const metadata = {
   },
 
   "/ipo/smeMarketIpo": {
-    title: "Expert Advice on SME IPO Applications | IpoTech",
+    title: "Expert Advice on SME IPO Applications | IpoTec",
     description:
       "Discover the latest IPO details for Small and Medium-sized Enterprises (SME) on our website, providing valuable insights for investors",
     keywords: [
@@ -92,7 +92,7 @@ const metadata = {
   },
 
   "/ipo/subscriptionStatus": {
-    title: "IPO Subscription Status - Live from BSE and NSE 2024 | IpoTech",
+    title: "IPO Subscription Status - Live from BSE and NSE 2024 | IpoTec",
     description:
       "The IPO subscription live status of IPO in 2024. Check how many times Mainboard IPO over-subscribed in QIB, NII and Retail category at BSE, NSE in real-time",
     keywords: [
@@ -106,14 +106,14 @@ const metadata = {
 
   "/ipo/ipoForms": {
     title:
-      "IPO Forms, Download ASBA IPO Forms, BSE and NSE IPO Forms | IpoTech",
+      "IPO Forms, Download ASBA IPO Forms, BSE and NSE IPO Forms | IpoTec",
     description:
       "IPO Forms - Download Mainline IPO and SME IPO forms online. NSE IPO form & BSE IPO form PDF for IPO Application is available for download online",
     keywords: ["ipo forms", "forms", "download forms", "ipo forms download"],
   },
 
   "/ipo/sharesBuyBack": {
-    title: "Upcoming Buyback 2024, Latest Buyback of Shares in India | IpoTech",
+    title: "Upcoming Buyback 2024, Latest Buyback of Shares in India | IpoTec",
     description:
       "Share Buyback 2024 - Find the latest share Buyback 2024 offers from the companies with record dates, prices, buyback types and more details ",
     keywords: [
@@ -128,7 +128,7 @@ const metadata = {
   },
 
   "/mutualfunds": {
-    title: "Top Mutual Funds: Smart Investing for Your Future | IpoTech",
+    title: "Top Mutual Funds: Smart Investing for Your Future | IpoTec",
     description:
       "Explore the best mutual funds to grow your savings. Unlock expert insights for smarter investment choices. Invest in your future now!",
     keywords: [
@@ -146,7 +146,7 @@ const metadata = {
 
   "/mutualfunds/screener": {
     title:
-      "Explore the Top Mutual Funds: Find the Best Picks Using Our Screening Tool | IpoTech",
+      "Explore the Top Mutual Funds: Find the Best Picks Using Our Screening Tool | IpoTec",
     description:
       "Explore high-performing mutual funds using our advanced screening tool. Utilize filters, conduct comparisons, and confidently make investment choices today!",
     keywords: [
@@ -162,7 +162,7 @@ const metadata = {
   },
 
   "/calculators/sip_calculator": {
-    title: "SIP Calculator : Systematic Investment Plan | IpoTech",
+    title: "SIP Calculator : Systematic Investment Plan | IpoTec",
     description:
       "A SIP calculator helps investors estimate potential returns on their systematic investment plan by inputting investment amount, expected rate of return, and tenure. This tool aids in making informed decisions and setting realistic financial goals for long-term growth!",
     keywords: [
@@ -177,7 +177,7 @@ const metadata = {
   },
 
   "/calculators/lumpsum_calculator": {
-    title: "Lumpsum Calculator: Quick & Easy Investment Planning | IpoTech",
+    title: "Lumpsum Calculator: Quick & Easy Investment Planning | IpoTec",
     description:
       "Need help with investment planning? Use our easy Lumpsum Calculator for fast calculations and smart financial decisions. Start now!",
     keywords: [
@@ -192,7 +192,7 @@ const metadata = {
   },
 
   "/calculators/swp_calculator": {
-    title: "SWP Calculator: Maximize Investment Returns Easily | IpoTech",
+    title: "SWP Calculator: Maximize Investment Returns Easily | IpoTec",
     description:
       "Want to boost your investment returns? Our SWP calculator makes it simple to plan withdrawals. Get started and optimize your strategy today!",
     keywords: [
@@ -251,40 +251,40 @@ router.get("/", async (req, res) => {
 });
 
 const replaceIPOWatchWithIpoTech = (metaData) => {
-  // Replace occurrences of "IPO Watch" with "IpoTech"
+  // Replace occurrences of "IPO Watch" with "IpoTec"
   if (metaData.title) {
-    metaData.title = metaData.title.replace(/IPO Watch/gi, "IpoTech");
+    metaData.title = metaData.title.replace(/IPO Watch/gi, "IpoTec");
   }
   if (metaData.description) {
     metaData.description = metaData.description.replace(
       /IPO Watch/gi,
-      "IpoTech"
+      "IpoTec"
     );
   }
   if (metaData.keywords) {
     metaData.keywords = metaData.keywords.map((keyword) =>
-      keyword.replace(/IPO Watch/gi, "IpoTech")
+      keyword.replace(/IPO Watch/gi, "IpoTec")
     );
   }
   if (metaData.og && metaData.og.title) {
-    metaData.og.title = metaData.og.title.replace(/IPO Watch/gi, "IpoTech");
+    metaData.og.title = metaData.og.title.replace(/IPO Watch/gi, "IpoTec");
   }
   if (metaData.og && metaData.og.description) {
     metaData.og.description = metaData.og.description.replace(
       /IPO Watch/gi,
-      "IpoTech"
+      "IpoTec"
     );
   }
   if (metaData.twitter && metaData.twitter.title) {
     metaData.twitter.title = metaData.twitter.title.replace(
       /IPO Watch/gi,
-      "IpoTech"
+      "IpoTec"
     );
   }
   if (metaData.twitter && metaData.twitter.description) {
     metaData.twitter.description = metaData.twitter.description.replace(
       /IPO Watch/gi,
-      "IpoTech"
+      "IpoTec"
     );
   }
 };
