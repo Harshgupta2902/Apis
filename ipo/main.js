@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
       now.getSeconds()
     ).padStart(2, "0")}`;
 
-    res.json({ upcomingData, smeData, timestamp, time });
+    res.json({ upcomingData, timestamp, time });
   } catch (error) {
     console.error("Error fetching data:", error);
     res.status(500).json({ error: "Internal Server Error" });
