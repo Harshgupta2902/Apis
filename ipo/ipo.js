@@ -41,7 +41,7 @@ router.get("/", async (req, res) => {
       })
       .get();
 
-    res.json({ upcomingIpos });
+    res.json({ test });
   } catch (error) {
     console.error("Error fetching IPO data:", error.message);
     res.status(500).json({ error: "Internal Server Error" });
