@@ -4,8 +4,6 @@ const router = express.Router();
 
 router.get("/:fund", async (req, res) => {
   const { fund } = req.params;
-
-  // const fund = req.query.fund;
   const url = `https://groww.in/v1/api/data/mf/web/v3/scheme/search/${fund}`;
 
   try {
@@ -17,4 +15,3 @@ router.get("/:fund", async (req, res) => {
 });
 
 module.exports = router;
-

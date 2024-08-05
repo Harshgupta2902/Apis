@@ -8,6 +8,8 @@ const { generateSlugFromUrl } = require("../utils");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
+  const time = req.query.time;
+
   try {
     const url = "https://ipowatch.in";
     const { data } = await axios.get(url);
@@ -15,8 +17,17 @@ router.get("/", async (req, res) => {
 
     const upcomingData = extractTableData($, $("#tablepress-1"), "Upcoming");
     const smeData = extractTableData($, $("#tablepress-2"), "SME");
+    const now = new Date();
+    const timestamp = `${String(now.getDate()).padStart(2, "0")}-${String(
+      now.getMonth() + 1
+    ).padStart(2, "0")}-${now.getFullYear()} ${String(now.getHours()).padStart(
+      2,
+      "0"
+    )}:${String(now.getMinutes()).padStart(2, "0")}:${String(
+      now.getSeconds()
+    ).padStart(2, "0")}`;
 
-    res.json({ upcomingData, smeData });
+    res.json({ upcomingData, smeData, timestamp, time });
   } catch (error) {
     console.error("Error fetching data:", error);
     res.status(500).json({ error: "Internal Server Error" });
