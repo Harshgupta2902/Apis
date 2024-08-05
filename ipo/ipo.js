@@ -41,11 +41,11 @@ router.get("/", async (req, res) => {
       })
       .get();
 
-    res.json({ test });
+    res.json({ upcomingIpos });
   } catch (error) {
     console.error("Error fetching IPO data:", error.message);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
-module.exports = router;
+module.exports = router;  
