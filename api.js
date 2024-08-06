@@ -11,8 +11,7 @@ const cacheMiddleware = (req, res, next) => {
 
   if (cachedResponse) {
     console.log(`Cache hit for ${key}`);
-    res.setHeader("Cache-Control", "public, max-age=3600"); // Cache for 1 hour
-
+    res.setHeader("Cache-Control", "public, max-age=3600");
     return res.send(cachedResponse);
   }
 
@@ -21,8 +20,7 @@ const cacheMiddleware = (req, res, next) => {
   res.send = (body) => {
     cache.set(key, body);
     console.log(`Cache set for ${key}`);
-    res.setHeader("Cache-Control", "public, max-age=3600"); // Cache for 1 hour
-
+    res.setHeader("Cache-Control", "public, max-age=3600");
     res.originalSend(body);
   };
   next();
@@ -34,7 +32,6 @@ app.use(cors());
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Cache-Control", "public, max-age=3600");
-
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, OPTIONS, PUT, DELETE"
@@ -53,21 +50,14 @@ const subsService = require("./ipo/subs");
 const details = require("./ipo/details");
 const getAdditionalIpo = require("./ipo/getAdditionalIpo");
 
-
 const getMfScreener = require("./mf/getMfScreener");
 const getMfDetails = require("./mf/getMfDetails");
 const getNav = require("./mf/getNav");
 const getMfLinks = require("./mf/getmfLinks");
-
-// const insertMfScreener = require("./mf/insertScreener");
-// const getisin = require("./mf/getisin");
-// const insertNav = require("./mf/insertNav");
-
-// const getMfScreener = require("./mf/getMfScreener");
+const amc = require("./mf/amc");
 
 const getIndices = require("./others/getIndices");
 const getTrend = require("./others/getTrend");
-// const checkPan = require("./others/checkPan");
 
 const insertBlog = require("./blogs/insertBlog");
 const getBlogDetails = require("./blogs/getBlogDetails");
@@ -76,7 +66,6 @@ const getblogs = require("./blogs/getblogs");
 const getMetaData = require("./meta-data");
 
 const getIpoLinks = require("./ipo/getIpoLinks");
-
 
 app.get("/", (req, res) => {
   res.send("API is running");
@@ -92,18 +81,14 @@ app.use("/api/subs", cacheMiddleware, subsService);
 app.use("/api/getDetails", cacheMiddleware, details);
 app.use("/api/getAdditionalIpo", cacheMiddleware, getAdditionalIpo);
 
-// app.use("/api/insertMfScreener", cacheMiddleware, insertMfScreener);
-// app.use("/api/getisin", cacheMiddleware, getisin);
-// app.use("/api/insertNav", cacheMiddleware, insertNav);
-
 app.use("/api/getMfDetails", cacheMiddleware, getMfDetails);
 app.use("/api/getMfScreener", cacheMiddleware, getMfScreener);
 app.use("/api/getNav", cacheMiddleware, getNav);
 app.use("/api/getMfLinks", cacheMiddleware, getMfLinks);
+app.use("/api/amc", cacheMiddleware, amc);
 
 app.use("/api/getIndices", cacheMiddleware, getIndices);
 app.use("/api/getTrend", cacheMiddleware, getTrend);
-// app.use("/api/checkPan", cacheMiddleware, checkPan);
 
 app.use("/api/insertBlog", insertBlog);
 app.use("/api/getBlogDetails", cacheMiddleware, getBlogDetails);
@@ -111,9 +96,7 @@ app.use("/api/getblogs", cacheMiddleware, getblogs);
 
 app.use("/api/meta-data", getMetaData);
 
-
 app.use("/api/getIpoLinks", cacheMiddleware, getIpoLinks);
-
 
 app.get("/api/clearCache", (req, res) => {
   console.log("Cache cleared successfully");
@@ -130,8 +113,6 @@ const cacheKeysToClear = [
   "/api/forms",
   "/api/subs",
   "/api/getAdditionalIpo",
-  // "/api/getMfLinks",
-  ""
 ];
 
 cron.schedule("0 */6 * * *", () => {
@@ -142,13 +123,22 @@ cron.schedule("0 */6 * * *", () => {
   });
 });
 
-
+app.listen(4001, () => {
+  console.log(`Server is running on http://localhost:${4001}/api`);
+});
 
 // cron.schedule("0 6 * * *", () => {
 //   console.log("Clearing cache at mornign 6");
 //   cache.flushAll();
 // });
 
-app.listen(4001, () => {
-  console.log(`Server is running on http://localhost:${4001}/api`);
-});
+// app.use("/api/insertMfScreener", cacheMiddleware, insertMfScreener);
+// app.use("/api/getisin", cacheMiddleware, getisin);
+// app.use("/api/insertNav", cacheMiddleware, insertNav);
+// app.use("/api/checkPan", cacheMiddleware, checkPan);
+
+// const insertMfScreener = require("./mf/insertScreener");
+// const getisin = require("./mf/getisin");
+// const insertNav = require("./mf/insertNav");
+// const getMfScreener = require("./mf/getMfScreener");
+// const checkPan = require("./others/checkPan");
