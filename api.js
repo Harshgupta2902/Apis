@@ -49,6 +49,7 @@ const smeService = require("./ipo/sme");
 const subsService = require("./ipo/subs");
 const details = require("./ipo/details");
 const getAdditionalIpo = require("./ipo/getAdditionalIpo");
+const getIpoLinks = require("./ipo/getIpoLinks");
 
 const getMfScreener = require("./mf/getMfScreener");
 const getMfDetails = require("./mf/getMfDetails");
@@ -56,16 +57,12 @@ const getNav = require("./mf/getNav");
 const getMfLinks = require("./mf/getmfLinks");
 const amc = require("./mf/amc");
 
-const getIndices = require("./others/getIndices");
-const getTrend = require("./others/getTrend");
-
 const insertBlog = require("./blogs/insertBlog");
 const getBlogDetails = require("./blogs/getBlogDetails");
 const getblogs = require("./blogs/getblogs");
 
 const getMetaData = require("./meta-data");
 
-const getIpoLinks = require("./ipo/getIpoLinks");
 
 app.get("/", (req, res) => {
   res.send("API is running");
@@ -80,6 +77,7 @@ app.use("/api/forms", cacheMiddleware, formsService);
 app.use("/api/subs", cacheMiddleware, subsService);
 app.use("/api/getDetails", cacheMiddleware, details);
 app.use("/api/getAdditionalIpo", cacheMiddleware, getAdditionalIpo);
+app.use("/api/getIpoLinks", cacheMiddleware, getIpoLinks);
 
 app.use("/api/getMfDetails", cacheMiddleware, getMfDetails);
 app.use("/api/getMfScreener", cacheMiddleware, getMfScreener);
@@ -87,16 +85,12 @@ app.use("/api/getNav", cacheMiddleware, getNav);
 app.use("/api/getMfLinks", cacheMiddleware, getMfLinks);
 app.use("/api/amc", cacheMiddleware, amc);
 
-app.use("/api/getIndices", cacheMiddleware, getIndices);
-app.use("/api/getTrend", cacheMiddleware, getTrend);
-
 app.use("/api/insertBlog", insertBlog);
 app.use("/api/getBlogDetails", cacheMiddleware, getBlogDetails);
 app.use("/api/getblogs", cacheMiddleware, getblogs);
 
 app.use("/api/meta-data", getMetaData);
 
-app.use("/api/getIpoLinks", cacheMiddleware, getIpoLinks);
 
 app.get("/api/clearCache", (req, res) => {
   console.log("Cache cleared successfully");
@@ -142,3 +136,9 @@ app.listen(4001, () => {
 // const insertNav = require("./mf/insertNav");
 // const getMfScreener = require("./mf/getMfScreener");
 // const checkPan = require("./others/checkPan");
+
+// const getIndices = require("./others/getIndices");
+// const getTrend = require("./others/getTrend");
+
+// app.use("/api/getIndices", cacheMiddleware, getIndices);
+// app.use("/api/getTrend", cacheMiddleware, getTrend);
