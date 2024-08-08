@@ -105,8 +105,7 @@ const metadata = {
   },
 
   "/ipo/ipoForms": {
-    title:
-      "IPO Forms, Download ASBA IPO Forms, BSE and NSE IPO Forms | IpoTec",
+    title: "IPO Forms, Download ASBA IPO Forms, BSE and NSE IPO Forms | IpoTec",
     description:
       "IPO Forms - Download Mainline IPO and SME IPO forms online. NSE IPO form & BSE IPO form PDF for IPO Application is available for download online",
     keywords: ["ipo forms", "forms", "download forms", "ipo forms download"],
@@ -158,6 +157,21 @@ const metadata = {
       "hybrid funds",
       "growth funds",
       "screener tools",
+    ],
+  },
+
+  "/mutualfunds/amc": {
+    title: "Latest MF Schemes, NAV, Performance & Returns | IpoTec",
+    description:
+      "Read all about Asset Management Companies (AMCs), their governing bodies, and discover the top Mutual Funds companies in India at IpoTec",
+    keywords: [
+      "mutual funds",
+      "amc page",
+      "ipotec",
+      "ipotec amc",
+      "Top AMC",
+      "latest amc ",
+      "growth funds",
     ],
   },
 
@@ -251,7 +265,6 @@ router.get("/", async (req, res) => {
 });
 
 const replaceIPOWatchWithIpoTech = (metaData) => {
-  // Replace occurrences of "IPO Watch" with "IpoTec"
   if (metaData.title) {
     metaData.title = metaData.title.replace(/IPO Watch/gi, "IpoTec");
   }
