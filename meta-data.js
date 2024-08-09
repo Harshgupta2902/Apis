@@ -175,6 +175,21 @@ const metadata = {
     ],
   },
 
+  "/mutualfunds/category": {
+    title: "List of Mutual Funds Categories | IpoTec",
+    description:
+      "List of Mutual Funds Categories. Find the complete details of catergorization - IpoTec",
+    keywords: [
+      "mutual funds",
+      "amc page",
+      "category",
+      "ipotec mf",
+      "ipotec amc",
+      "Top Funds",
+      "latest amc",
+    ],
+  },
+
   "/calculators/sip_calculator": {
     title: "SIP Calculator : Systematic Investment Plan | IpoTec",
     description:
