@@ -190,6 +190,29 @@ const metadata = {
     ],
   },
 
+  "/calculators": {
+    title: "Invest in Your Future: Finance Smart, Grow Wealth | IpoTec",
+    description:
+      "Tools & Calculators: Plan smarter with our financial tools. Invest, save, and achieve your goals with insights to grow wealth and secure your future",
+    keywords: [
+      "Financial calculators",
+      "Investment planning",
+      "Wealth management",
+      "Savings calculator",
+      "Retirement planning",
+      "Future planning tools",
+      "Smart investing",
+      "Financial planning tools",
+      "Personal finance",
+      "Grow wealth",
+      "Financial security",
+      "Budgeting tools",
+      "Online calculators",
+      "Investment growth",
+      "Financial insights",
+    ],
+  },
+
   "/calculators/sip_calculator": {
     title: "SIP Calculator : Systematic Investment Plan | IpoTec",
     description:
