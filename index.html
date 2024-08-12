@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BTC/USD Price</title>
+  </head>
+  <body>
+    <h1>Current BTC/USD Price: <span id="price">Loading...</span></h1>
+
+    <script>
+      const ws = new WebSocket("ws://localhost:8080");
+
+      ws.onmessage = (event) => {
+        const priceElement = document.getElementById("price");
+        priceElement.textContent = event.data;
+      };
+
+      ws.onclose = () => {
+        console.log("WebSocket connection closed");
+      };
+    </script>
+  </body>
+</html>
