@@ -10,13 +10,11 @@ router.get("/", async (req, res) => {
     }
     const blogs = snapshot.docs.map((doc) => {
       const data = doc.data();
-      const { slug, published_at } = data;
+      const { slug, published_at,category } = data;
 
-      const published = new Date(
-        published_at._seconds * 1000
-      ).toISOString();
+      const published = new Date(published_at._seconds * 1000).toISOString();
 
-      return { slug, published };
+      return { slug, published, category };
     });
     res.status(200).json(blogs);
   } catch (error) {
