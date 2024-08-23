@@ -60,9 +60,9 @@ const amc = require("./mf/amc");
 const insertBlog = require("./blogs/insertBlog");
 const getBlogDetails = require("./blogs/getBlogDetails");
 const getblogs = require("./blogs/getblogs");
+const getBlogsLinks = require("./blogs/getBlogsLinks");
 
 const getMetaData = require("./meta-data");
-
 
 app.get("/", (req, res) => {
   res.send("API is running");
@@ -88,9 +88,9 @@ app.use("/api/amc", cacheMiddleware, amc);
 app.use("/api/insertBlog", insertBlog);
 app.use("/api/getBlogDetails", cacheMiddleware, getBlogDetails);
 app.use("/api/getblogs", cacheMiddleware, getblogs);
+app.use("/api/getBlogsLinks", cacheMiddleware, getBlogsLinks);
 
 app.use("/api/meta-data", getMetaData);
-
 
 app.get("/api/clearCache", (req, res) => {
   console.log("Cache cleared successfully");
