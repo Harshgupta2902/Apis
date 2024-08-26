@@ -77,7 +77,7 @@ app.use("/api/forms", cacheMiddleware, formsService);
 app.use("/api/subs", cacheMiddleware, subsService);
 app.use("/api/getDetails", cacheMiddleware, details);
 app.use("/api/getAdditionalIpo", cacheMiddleware, getAdditionalIpo);
-app.use("/api/getIpoLinks", cacheMiddleware, getIpoLinks);
+app.use("/api/getIpoLinks", getIpoLinks);
 
 app.use("/api/getMfDetails", cacheMiddleware, getMfDetails);
 app.use("/api/getMfScreener", cacheMiddleware, getMfScreener);
@@ -88,7 +88,7 @@ app.use("/api/amc", cacheMiddleware, amc);
 app.use("/api/insertBlog", insertBlog);
 app.use("/api/getBlogDetails", cacheMiddleware, getBlogDetails);
 app.use("/api/getblogs", cacheMiddleware, getblogs);
-app.use("/api/getBlogsLinks", cacheMiddleware, getBlogsLinks);
+app.use("/api/getBlogsLinks", getBlogsLinks);
 
 app.use("/api/meta-data", getMetaData);
 

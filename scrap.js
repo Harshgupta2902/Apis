@@ -17,9 +17,7 @@ wss.on("connection", (ws) => {
   const page = await browser.newPage();
 
   // Go to the TradingView BTC/USD page
-  await page.goto(
-    "https://in.tradingview.com/symbols/NSE-HDFCBANK/"
-  );
+  await page.goto("https://in.tradingview.com/symbols/NSE-HDFCBANK/");
 
   // Wait for the price span element to be available
   await page.waitForSelector(".last-JWoJqCpY.js-symbol-last");
