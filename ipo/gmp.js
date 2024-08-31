@@ -37,7 +37,7 @@ router.get("/", async (req, res) => {
           $(row)
             .find("td")
             .each((index, column) => {
-              const header = headers[index].toLowerCase(); // Assuming headers are normalized to lowercase
+              const header = headers[index].toLowerCase();
               const anchor = $(column).find("a");
 
               if (anchor.length > 0) {
@@ -66,12 +66,21 @@ router.get("/", async (req, res) => {
               slug: generateSlugFromUrl(companyNameObj.link || "#"),
             };
             gmp.push(formattedTable);
+            console.log(formattedTable);
           } else {
             console.error("IPO Name is missing or incorrect", rowData);
           }
         });
 
-      const additionalTable = $("figure.wp-block-table").eq(1).find("table");
+      // Locate the specific h2 element
+      const heading = $(
+        "h2.wp-block-heading#h-ipo-grey-market-premium-archive-2024-2023"
+      );
+
+      // Find the table immediately after the heading
+      const additionalTable = heading
+        .next("figure.wp-block-table")
+        .find("table");
       const additionalHeaders = [];
       additionalTable
         .find("tr")
@@ -90,7 +99,7 @@ router.get("/", async (req, res) => {
           $(row)
             .find("td")
             .each((index, column) => {
-              const header = additionalHeaders[index].toLowerCase();
+              const header = additionalHeaders[index];
               const anchor = $(column).find("a");
               if (anchor.length > 0) {
                 const anchorText = anchor.text().trim();
@@ -104,15 +113,17 @@ router.get("/", async (req, res) => {
               }
             });
 
-          // Safeguard checks
-          const companyNameObj = rowData["company"];
+          // Format data for the additional list
+          const companyNameObj = rowData["ipo name"];
           if (companyNameObj && typeof companyNameObj === "object") {
             const formattedTable = {
               company_name: companyNameObj.text || "N/A",
-              price: rowData["price"] || "N/A",
-              ipo_gmp: rowData["ipo gmp"] || "N/A",
-              listed: rowData["listed"] || "N/A",
               link: companyNameObj.link || "#",
+              ipo_gmp: rowData["gmp rate"] || "N/A",
+              price: rowData["price"] || "N/A",
+              listed: rowData["listed"] || "N/A",
+              // date: rowData["date"] || "N/A",
+              // type: rowData["type"] || "N/A",
               slug: generateSlugFromUrl(companyNameObj.link || "#"),
             };
             oldGmp.push(formattedTable);
@@ -120,6 +131,7 @@ router.get("/", async (req, res) => {
             console.error("IPO Name is missing or incorrect", rowData);
           }
         });
+
       res.json({ gmp, oldGmp });
     } else {
       throw new Error("Failed to fetch the page");
