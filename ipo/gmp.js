@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
         .first()
         .find("td")
         .each((index, column) => {
-          headers.push($(column).text().trim());
+          headers.push($(column).text().trim().toLowerCase());
         });
 
       table
@@ -37,31 +37,38 @@ router.get("/", async (req, res) => {
           $(row)
             .find("td")
             .each((index, column) => {
+              const header = headers[index].toLowerCase(); // Assuming headers are normalized to lowercase
               const anchor = $(column).find("a");
+
               if (anchor.length > 0) {
                 const anchorText = anchor.text().trim();
                 const anchorLink = anchor.attr("href").trim();
-                rowData[headers[index]] = {
+                rowData[header] = {
                   text: anchorText,
                   link: anchorLink,
                 };
               } else {
-                rowData[headers[index]] = $(column).text().trim();
+                rowData[header] = $(column).text().trim();
               }
             });
 
-          const formattedTable = {
-            company_name: rowData["IPO Name"]["text"],
-            link: rowData["IPO Name"]["link"],
-            type: rowData["IPOType"],
-            ipo_gmp: rowData["IPOGMP"],
-            price: rowData["IPOPrice"],
-            gain: rowData["ListingGain"],
-            kostak: rowData["KostakRates"],
-            subject: rowData["SubjectRates"],
-            slug: generateSlugFromUrl(rowData["IPO Name"]["link"]),
-          };
-          gmp.push(formattedTable);
+          // Safeguard check
+          const companyNameObj = rowData["company"];
+          if (companyNameObj && typeof companyNameObj === "object") {
+            const formattedTable = {
+              company_name: companyNameObj.text || "N/A",
+              link: companyNameObj.link || "#",
+              type: rowData["type"] || "N/A",
+              ipo_gmp: rowData["ipo gmp"] || "N/A",
+              price: rowData["price"] || "N/A",
+              gain: rowData["gain"] || "N/A",
+              date: rowData["date"] || "N/A",
+              slug: generateSlugFromUrl(companyNameObj.link || "#"),
+            };
+            gmp.push(formattedTable);
+          } else {
+            console.error("IPO Name is missing or incorrect", rowData);
+          }
         });
 
       const additionalTable = $("figure.wp-block-table").eq(1).find("table");
@@ -71,7 +78,7 @@ router.get("/", async (req, res) => {
         .first()
         .find("td")
         .each((index, column) => {
-          additionalHeaders.push($(column).text().trim());
+          additionalHeaders.push($(column).text().trim().toLowerCase());
         });
 
       // Process rows of the additional table
@@ -83,29 +90,35 @@ router.get("/", async (req, res) => {
           $(row)
             .find("td")
             .each((index, column) => {
+              const header = additionalHeaders[index].toLowerCase();
               const anchor = $(column).find("a");
               if (anchor.length > 0) {
                 const anchorText = anchor.text().trim();
                 const anchorLink = anchor.attr("href").trim();
-                rowData[additionalHeaders[index]] = {
+                rowData[header] = {
                   text: anchorText,
                   link: anchorLink,
                 };
               } else {
-                rowData[additionalHeaders[index]] = $(column).text().trim();
+                rowData[header] = $(column).text().trim();
               }
             });
 
-          // Format data for additional list
-          const formattedTable = {
-            company_name: rowData["IPO Name"]["text"],
-            price: rowData["Price"],
-            ipo_gmp: rowData["IPO GMP"],
-            listed: rowData["Listed"],
-            link: rowData["IPO Name"]["link"],
-            slug: generateSlugFromUrl(rowData["IPO Name"]["link"]),
-          };
-          oldGmp.push(formattedTable);
+          // Safeguard checks
+          const companyNameObj = rowData["company"];
+          if (companyNameObj && typeof companyNameObj === "object") {
+            const formattedTable = {
+              company_name: companyNameObj.text || "N/A",
+              price: rowData["price"] || "N/A",
+              ipo_gmp: rowData["ipo gmp"] || "N/A",
+              listed: rowData["listed"] || "N/A",
+              link: companyNameObj.link || "#",
+              slug: generateSlugFromUrl(companyNameObj.link || "#"),
+            };
+            oldGmp.push(formattedTable);
+          } else {
+            console.error("IPO Name is missing or incorrect", rowData);
+          }
         });
       res.json({ gmp, oldGmp });
     } else {
