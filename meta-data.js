@@ -257,6 +257,25 @@ const metadata = {
       "screener tools",
     ],
   },
+
+  "/blogs": {
+    title: "Explore the Latest Insights on IPOs and Mutual Funds | IpoTec",
+    description:
+      "Discover expert analysis, news, and trends in IPOs, mutual funds, and related topics. Stay informed with in-depth articles and updates on IPO launches, mutual funds NFO's, and emerging market trends",
+    keywords: [
+      "crypto blogs",
+      "bitcoin blogs",
+      "ipo blogs",
+      "ipo",
+      "nfo",
+      "investments",
+      "mutual funds",
+      "market",
+      "trending blogs",
+      "groww",
+      "grow",
+    ],
+  },
 };
 
 router.get("/", async (req, res) => {
