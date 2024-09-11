@@ -58,6 +58,7 @@ const getMfLinks = require("./mf/getmfLinks");
 const amc = require("./mf/amc");
 const nfo = require("./mf/nfo");
 const getNfoDetails = require("./mf/getNfoDetails");
+const getNfoLinks = require("./mf/getNfoLinks");
 
 const insertBlog = require("./blogs/insertBlog");
 const getBlogDetails = require("./blogs/getBlogDetails");
@@ -79,12 +80,10 @@ app.use("/api/forms", cacheMiddleware, formsService);
 app.use("/api/subs", cacheMiddleware, subsService);
 app.use("/api/getDetails", cacheMiddleware, details);
 app.use("/api/getAdditionalIpo", cacheMiddleware, getAdditionalIpo);
-app.use("/api/getIpoLinks", getIpoLinks);
 
 app.use("/api/getMfDetails", cacheMiddleware, getMfDetails);
 app.use("/api/getMfScreener", cacheMiddleware, getMfScreener);
 app.use("/api/getNav", cacheMiddleware, getNav);
-app.use("/api/getMfLinks", cacheMiddleware, getMfLinks);
 app.use("/api/amc", cacheMiddleware, amc);
 app.use("/api/nfo", nfo);
 app.use("/api/getNfoDetails", getNfoDetails);
@@ -92,10 +91,13 @@ app.use("/api/getNfoDetails", getNfoDetails);
 app.use("/api/insertBlog", insertBlog);
 app.use("/api/getBlogDetails", cacheMiddleware, getBlogDetails);
 app.use("/api/getblogs", cacheMiddleware, getblogs);
-app.use("/api/getBlogsLinks", getBlogsLinks);
 
 app.use("/api/meta-data", getMetaData);
 
+app.use("/api/getIpoLinks", getIpoLinks);
+app.use("/api/getBlogsLinks", getBlogsLinks);
+app.use("/api/getMfLinks", getMfLinks);
+app.use("/api/getNfoLinks", getNfoLinks);
 app.get("/api/clearCache", (req, res) => {
   console.log("Cache cleared successfully");
   cache.flushAll();
