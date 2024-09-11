@@ -276,6 +276,20 @@ const metadata = {
       "grow",
     ],
   },
+  "/mutualfunds/nfo": {
+    title: "Explore NFO Funds | IpoTec",
+    description:
+      "Find upcoming NFOs, details on closed offers, and essential updates to make informed investment decisions",
+    keywords: [
+      "Upcoming NFOs",
+      "Closed NFO details",
+      "Investment updates",
+      "Live NFOs",
+      "NFO information",
+      "Investment decisions",
+      "Financial updates",
+    ],
+  },
 };
 
 router.get("/", async (req, res) => {
