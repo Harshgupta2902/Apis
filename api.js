@@ -56,6 +56,7 @@ const getMfDetails = require("./mf/getMfDetails");
 const getNav = require("./mf/getNav");
 const getMfLinks = require("./mf/getmfLinks");
 const amc = require("./mf/amc");
+const nfo = require("./mf/nfo");
 
 const insertBlog = require("./blogs/insertBlog");
 const getBlogDetails = require("./blogs/getBlogDetails");
@@ -84,6 +85,7 @@ app.use("/api/getMfScreener", cacheMiddleware, getMfScreener);
 app.use("/api/getNav", cacheMiddleware, getNav);
 app.use("/api/getMfLinks", cacheMiddleware, getMfLinks);
 app.use("/api/amc", cacheMiddleware, amc);
+app.use("/api/nfo", nfo);
 
 app.use("/api/insertBlog", insertBlog);
 app.use("/api/getBlogDetails", cacheMiddleware, getBlogDetails);
