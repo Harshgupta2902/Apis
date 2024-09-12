@@ -290,6 +290,17 @@ const metadata = {
       "Financial updates",
     ],
   },
+  "/ifsc-code": {
+    title: "IpoTec IFSC Details Finder",
+    description:
+      "Enter IFSC Code and get your Bank Details for that IFSC Code, BRANCH, MICR Code, Branch Code, Address, and Phone Number for NEFT, RTGS, ECS",
+    keywords: [
+      "IFSC Code",
+      "IFSC code finder",
+      "ifsc detials",
+      "bank details",
+    ],
+  },
 };
 
 router.get("/", async (req, res) => {
