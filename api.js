@@ -66,7 +66,9 @@ const getblogs = require("./blogs/getblogs");
 const getBlogsLinks = require("./blogs/getBlogsLinks");
 
 const getMetaData = require("./meta-data");
+
 const getIfsc = require("./others/checkIfsc");
+const geBankDetails = require("./others/geBankDetails");
 
 app.get("/", (req, res) => {
   res.send("API is running");
@@ -99,8 +101,9 @@ app.use("/api/getIpoLinks", getIpoLinks);
 app.use("/api/getBlogsLinks", getBlogsLinks);
 app.use("/api/getMfLinks", getMfLinks);
 app.use("/api/getNfoLinks", getNfoLinks);
-app.use("/api/getIfsc", getIfsc);
 
+app.use("/api/getIfsc", getIfsc);
+app.use("/api/geBankDetails", geBankDetails);
 
 app.get("/api/clearCache", (req, res) => {
   console.log("Cache cleared successfully");
