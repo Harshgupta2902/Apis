@@ -291,7 +291,7 @@ const metadata = {
     ],
   },
   "/ifsc-code": {
-    title: "IpoTec IFSC Details Finder",
+    title: "Locate your Bank using IFSC Finder - IpoTec",
     description:
       "Enter IFSC Code and get your Bank Details for that IFSC Code, BRANCH, MICR Code, Branch Code, Address, and Phone Number for NEFT, RTGS, ECS",
     keywords: ["IFSC Code", "IFSC code finder", "ifsc detials", "bank details"],
