@@ -72,7 +72,6 @@ const geBankDetails = require("./others/geBankDetails");
 
 const getPincode = require("./others/getPincode");
 
-
 app.get("/", (req, res) => {
   res.send("API is running");
 });
@@ -109,7 +108,6 @@ app.use("/api/getIfsc", getIfsc);
 app.use("/api/geBankDetails", geBankDetails);
 
 app.use("/api/getPincode", getPincode);
-
 
 app.get("/api/clearCache", (req, res) => {
   console.log("Cache cleared successfully");
