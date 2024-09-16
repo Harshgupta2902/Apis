@@ -70,6 +70,9 @@ const getMetaData = require("./meta-data");
 const getIfsc = require("./others/checkIfsc");
 const geBankDetails = require("./others/geBankDetails");
 
+const getPincode = require("./others/getPincode");
+
+
 app.get("/", (req, res) => {
   res.send("API is running");
 });
@@ -105,6 +108,9 @@ app.use("/api/getNfoLinks", getNfoLinks);
 app.use("/api/getIfsc", getIfsc);
 app.use("/api/geBankDetails", geBankDetails);
 
+app.use("/api/getPincode", getPincode);
+
+
 app.get("/api/clearCache", (req, res) => {
   console.log("Cache cleared successfully");
   cache.flushAll();
@@ -131,8 +137,8 @@ cron.schedule("0 */6 * * *", () => {
   });
 });
 
-app.listen(4001, () => {
-  console.log(`Server is running on http://localhost:${4001}/api`);
+app.listen(4000, () => {
+  console.log(`Server is running on http://localhost:${4000}/api`);
 });
 
 // cron.schedule("0 6 * * *", () => {

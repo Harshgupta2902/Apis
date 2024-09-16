@@ -8,20 +8,34 @@ router.get("/", async (req, res) => {
   if (!pincode) return res.status(400).json({ error: "Pincode is required" });
 
   // Read the JSON file
-  fs.readFile("pincode_data.json", "utf8", (err, data) => {
-    if (err) return res.status(500).json({ error: "Error reading file" });
+  fs.readFile("others/pincode_data.json", "utf8", (err, data) => {
+    if (err) {
+      console.error("Error reading file:", err);
+      return res
+        .status(500)
+        .json({ error: `Error reading file: ${err.message}` });
+    }
 
-    const pinData = JSON.parse(data);
-    const results = pinData
-      .filter((entry) => entry.PinCode == pincode)
-      .map((entry) => ({
-        PostOffice: entry.PostOffice,
-        State: entry.State,
-        District: entry.District,
-        PinCode: entry.PinCode,
-      }));
+    try {
+      const pinData = JSON.parse(data);
 
-    res.json(results.length ? results : { message: "No results found" });
+      // Filter and map the results to only include specific fields
+      const results = pinData
+        .filter((entry) => entry.PinCode == pincode)
+        .map((entry) => ({
+          PostOffice: entry.PostOffice,
+          State: entry.State,
+          District: entry.District,
+          PinCode: entry.PinCode,
+        }));
+
+      res.json(results.length ? results : { message: "No results found" });
+    } catch (parseError) {
+      console.error("Error parsing JSON:", parseError);
+      res
+        .status(500)
+        .json({ error: `Error parsing JSON: ${parseError.message}` });
+    }
   });
 });
 
