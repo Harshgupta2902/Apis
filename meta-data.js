@@ -296,6 +296,12 @@ const metadata = {
       "Enter IFSC Code and get your Bank Details for that IFSC Code, BRANCH, MICR Code, Branch Code, Address, and Phone Number for NEFT, RTGS, ECS",
     keywords: ["IFSC Code", "IFSC code finder", "ifsc detials", "bank details"],
   },
+  "/pincode-finder": {
+    title: "Locate your Post Office with PinCode Finder - IpoTec",
+    description:
+      "Enter Pin Code or select the location of your area and get your Nearest Post Office Details for that PinCode",
+    keywords: ["IFSC Code", "IFSC code finder", "ifsc detials", "bank details"],
+  },
 };
 
 router.get("/", async (req, res) => {
