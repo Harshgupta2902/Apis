@@ -300,7 +300,8 @@ const metadata = {
     title: "Locate your Post Office with PinCode Finder - IpoTec",
     description:
       "Enter Pin Code or select the location of your area and get your Nearest Post Office Details for that PinCode",
-    keywords: ["IFSC Code", "IFSC code finder", "ifsc detials", "bank details"],
+    keywords: ["Pincode", "Pincode code finder", "pincode detials", "post office details"],
+
   },
 };
 
