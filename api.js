@@ -67,10 +67,10 @@ const getBlogsLinks = require("./blogs/getBlogsLinks");
 
 const getMetaData = require("./meta-data");
 
-const getIfsc = require("./others/checkIfsc");
-const geBankDetails = require("./others/geBankDetails");
+// const getIfsc = require("./others/checkIfsc");
+// const geBankDetails = require("./others/geBankDetails");
 
-const getPincode = require("./others/getPincode");
+// const getPincode = require("./others/getPincode");
 
 app.get("/", (req, res) => {
   res.send("API is running");
@@ -104,10 +104,10 @@ app.use("/api/getBlogsLinks", getBlogsLinks);
 app.use("/api/getMfLinks", getMfLinks);
 app.use("/api/getNfoLinks", getNfoLinks);
 
-app.use("/api/getIfsc", getIfsc);
-app.use("/api/geBankDetails", geBankDetails);
+// app.use("/api/getIfsc", getIfsc);
+// app.use("/api/geBankDetails", geBankDetails);
 
-app.use("/api/getPincode", getPincode);
+// app.use("/api/getPincode", getPincode);
 
 app.get("/api/clearCache", (req, res) => {
   console.log("Cache cleared successfully");
