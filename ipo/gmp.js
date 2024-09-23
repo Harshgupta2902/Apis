@@ -60,7 +60,7 @@ router.get("/", async (req, res) => {
       const figureContainer = $("figure.wp-block-table").first();
       const table = figureContainer.find("table");
 
-      const gmp = [];
+      const Gmp = [];
       const oldGmp = [];
 
       const headers = [];
@@ -108,7 +108,7 @@ router.get("/", async (req, res) => {
                 date: rowData["date"] || "N/A",
                 slug: generateSlugFromUrl(companyNameObj.link || "#"),
               };
-              gmp.push(formattedTable);
+              Gmp.push(formattedTable);
               console.log(formattedTable);
             } else {
               console.error("MainIPO Name is missing or incorrect", rowData);
@@ -175,10 +175,10 @@ router.get("/", async (req, res) => {
           }
         });
 
-        const sortedIpoData = sortIpoDataByDateProximity(gmp);
+        const gmp = sortIpoDataByDateProximity(Gmp);
 
 
-      res.json({ sortedIpoData, oldGmp });
+      res.json({ gmp, oldGmp });
     } else {
       throw new Error("Failed to fetch the page");
     }
