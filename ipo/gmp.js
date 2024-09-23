@@ -102,9 +102,9 @@ router.get("/", async (req, res) => {
                 company_name: companyNameObj.text || "N/A",
                 link: companyNameObj.link || "#",
                 type: rowData["type"] || "N/A",
-                ipo_gmp: rowData["ipo gmp"] || "N/A",
+                ipo_gmp: rowData["ipo gmp"].replaceAll("₹-", "-") || "N/A",
                 price: rowData["price"] || "N/A",
-                gain: rowData["gain"] || "N/A",
+                gain: rowData["gain"].replaceAll("-%", "-") || "N/A",
                 date: rowData["date"] || "N/A",
                 slug: generateSlugFromUrl(companyNameObj.link || "#"),
               };
