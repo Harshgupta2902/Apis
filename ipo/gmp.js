@@ -7,6 +7,49 @@ const { generateSlugFromUrl } = require("../utils");
 
 const router = express.Router();
 
+function parseDateRange(dateRangeStr) {
+  const [startDateStr, endDateStr] = dateRangeStr.split("-");
+  const startDate = parseDate(startDateStr.trim());
+  const endDate = parseDate(endDateStr.trim());
+  return { startDate, endDate };
+}
+
+// Helper function to parse individual date strings like "19 Sept"
+function parseDate(dateStr) {
+  const [day, month] = dateStr.split(" ");
+  const monthMap = {
+    Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
+    Jul: 6, Aug: 7, Sept: 8, Oct: 9, Nov: 10, Dec: 11
+  };
+  if (!monthMap[month]) return null;
+  const year = new Date().getFullYear(); // Assume this year's IPOs
+  return new Date(year, monthMap[month], parseInt(day, 10));
+}
+
+// Sort data based on how close the date range is to today
+function sortIpoDataByDateProximity(data) {
+  const today = new Date();
+  
+  return data.sort((a, b) => {
+    const { startDate: startA, endDate: endA } = parseDateRange(a.date);
+    const { startDate: startB, endDate: endB } = parseDateRange(b.date);
+
+    // Check if today's date is within either range
+    const aIncludesToday = today >= startA && today <= endA;
+    const bIncludesToday = today >= startB && today <= endB;
+
+    if (aIncludesToday && !bIncludesToday) return -1;
+    if (!aIncludesToday && bIncludesToday) return 1;
+
+    // Otherwise, sort by which date range is closer to today
+    const aProximity = Math.abs(today - startA);
+    const bProximity = Math.abs(today - startB);
+
+    return aProximity - bProximity;
+  });
+}
+
+
 router.get("/", async (req, res) => {
   try {
     const url = "https://ipowatch.in/ipo-grey-market-premium-latest-ipo-gmp/";
@@ -54,22 +97,22 @@ router.get("/", async (req, res) => {
 
           // Safeguard check
           const companyNameObj = rowData["upcoming ipo"];
-          if (companyNameObj && typeof companyNameObj === "object") {
-            const formattedTable = {
-              company_name: companyNameObj.text || "N/A",
-              link: companyNameObj.link || "#",
-              type: rowData["type"] || "N/A",
-              ipo_gmp: rowData["ipo gmp"] || "N/A",
-              price: rowData["price"] || "N/A",
-              gain: rowData["gain"] || "N/A",
-              date: rowData["date"] || "N/A",
-              slug: generateSlugFromUrl(companyNameObj.link || "#"),
-            };
-            gmp.push(formattedTable);
-            console.log(formattedTable);
-          } else {
-            console.error("MainIPO Name is missing or incorrect", rowData);
-          }
+            if (companyNameObj && typeof companyNameObj === "object") {
+              const formattedTable = {
+                company_name: companyNameObj.text || "N/A",
+                link: companyNameObj.link || "#",
+                type: rowData["type"] || "N/A",
+                ipo_gmp: rowData["ipo gmp"] || "N/A",
+                price: rowData["price"] || "N/A",
+                gain: rowData["gain"] || "N/A",
+                date: rowData["date"] || "N/A",
+                slug: generateSlugFromUrl(companyNameObj.link || "#"),
+              };
+              gmp.push(formattedTable);
+              console.log(formattedTable);
+            } else {
+              console.error("MainIPO Name is missing or incorrect", rowData);
+            }
         });
 
       // Locate the specific h2 element
@@ -132,7 +175,10 @@ router.get("/", async (req, res) => {
           }
         });
 
-      res.json({ gmp, oldGmp });
+        const sortedIpoData = sortIpoDataByDateProximity(gmp);
+
+
+      res.json({ sortedIpoData, oldGmp });
     } else {
       throw new Error("Failed to fetch the page");
     }
