@@ -53,7 +53,7 @@ router.get("/", async (req, res) => {
             });
 
           // Safeguard check
-          const companyNameObj = rowData["company"];
+          const companyNameObj = rowData["upcoming ipo"];
           if (companyNameObj && typeof companyNameObj === "object") {
             const formattedTable = {
               company_name: companyNameObj.text || "N/A",
@@ -68,7 +68,7 @@ router.get("/", async (req, res) => {
             gmp.push(formattedTable);
             console.log(formattedTable);
           } else {
-            console.error("IPO Name is missing or incorrect", rowData);
+            console.error("MainIPO Name is missing or incorrect", rowData);
           }
         });
 
@@ -128,7 +128,7 @@ router.get("/", async (req, res) => {
             };
             oldGmp.push(formattedTable);
           } else {
-            console.error("IPO Name is missing or incorrect", rowData);
+            console.error("Old IPO Name is missing or incorrect", rowData);
           }
         });
 
