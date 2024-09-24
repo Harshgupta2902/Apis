@@ -18,9 +18,9 @@ router.get("/", async (req, res) => {
         const company_name = columns.eq(0).text().trim();
         const link = columns.eq(0).find("a").attr("href");
         const date = columns.eq(1).text().trim();
-        const size = columns.eq(2).text().trim();
-        const price = columns.eq(3).text().trim();
-        const status = "Upcoming";
+        const type = columns.eq(2).text().trim();
+        const size = columns.eq(3).text().trim();
+        const priceband = columns.eq(4).text().trim();
         const fullLink =
           link && !link.startsWith("http")
             ? `https://ipowatch.in/${link}`
@@ -32,9 +32,9 @@ router.get("/", async (req, res) => {
         return {
           company_name,
           date,
+          type,
           size,
-          price,
-          status,
+          priceband,
           link: `${fullLink}`,
           slug,
         };
