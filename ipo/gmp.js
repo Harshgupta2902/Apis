@@ -7,47 +7,39 @@ const { generateSlugFromUrl } = require("../utils");
 
 const router = express.Router();
 
-function parseDateRange(dateRangeStr) {
-  const [startDateStr, endDateStr] = dateRangeStr.split("-");
-  const startDate = parseDate(startDateStr.trim());
-  const endDate = parseDate(endDateStr.trim());
-  return { startDate, endDate };
-}
-
-// Helper function to parse individual date strings like "19 Sept"
-function parseDate(dateStr) {
-  const [day, month] = dateStr.split(" ");
-  const monthMap = {
-    Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
-    Jul: 6, Aug: 7, Sept: 8, Oct: 9, Nov: 10, Dec: 11
+const monthToNumber = (month) => {
+  const months = {
+    'Jan.': 1,
+    'Feb.': 2,
+    'Mar.': 3,
+    'Apr.': 4,
+    'May.': 5,
+    'Jun.': 6,
+    'Jul.': 7,
+    'Aug.': 8,
+    'Sept.': 9,
+    'Oct.': 10,
+    'Nov.': 11,
+    'Dec.': 12,
   };
-  if (!monthMap[month]) return null;
-  const year = new Date().getFullYear(); // Assume this year's IPOs
-  return new Date(year, monthMap[month], parseInt(day, 10));
-}
+  return months[month] || 0; // Return 0 for unknown months
+};
 
-// Sort data based on how close the date range is to today
-function sortIpoDataByDateProximity(data) {
-  const today = new Date();
-  
-  return data.sort((a, b) => {
-    const { startDate: startA, endDate: endA } = parseDateRange(a.date);
-    const { startDate: startB, endDate: endB } = parseDateRange(b.date);
+const sortEntriesByDate = (entries) => {
+  return entries.sort((a, b) => {
+    const [dayA, monthA] = a.date.split('-')[0].trim().split(' ');
+    const [dayB, monthB] = b.date.split('-')[0].trim().split(' ');
 
-    // Check if today's date is within either range
-    const aIncludesToday = today >= startA && today <= endA;
-    const bIncludesToday = today >= startB && today <= endB;
+    const monthNumA = monthToNumber(monthA);
+    const monthNumB = monthToNumber(monthB);
 
-    if (aIncludesToday && !bIncludesToday) return -1;
-    if (!aIncludesToday && bIncludesToday) return 1;
-
-    // Otherwise, sort by which date range is closer to today
-    const aProximity = Math.abs(today - startA);
-    const bProximity = Math.abs(today - startB);
-
-    return aProximity - bProximity;
+    if (monthNumA !== monthNumB) {
+      return monthNumB - monthNumA; // Sort by month descending
+    } else {
+      return parseInt(dayB) - parseInt(dayA); // Sort by day descending
+    }
   });
-}
+};
 
 
 router.get("/", async (req, res) => {
@@ -175,7 +167,7 @@ router.get("/", async (req, res) => {
           }
         });
 
-        const gmp = sortIpoDataByDateProximity(Gmp);
+        const gmp = sortEntriesByDate(Gmp);
 
 
       res.json({ gmp, oldGmp });
