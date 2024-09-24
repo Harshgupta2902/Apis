@@ -31,7 +31,7 @@ router.get("/", async (req, res) => {
 
         return {
           company_name,
-          dateRange, // Include dateRange in the returned object
+          date,
           type,
           size,
           priceband,
