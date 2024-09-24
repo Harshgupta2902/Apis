@@ -76,8 +76,8 @@ const monthToNumber = (month) => {
 
 const sortEntriesByDate = (entries) => {
   return entries.sort((a, b) => {
-    const [dayA, monthA] = a.dateRange.split('-')[0].trim().split(' ');
-    const [dayB, monthB] = b.dateRange.split('-')[0].trim().split(' ');
+    const [dayA, monthA] = a.date.split('-')[0].trim().split(' ');
+    const [dayB, monthB] = b.date.split('-')[0].trim().split(' ');
 
     const monthNumA = monthToNumber(monthA);
     const monthNumB = monthToNumber(monthB);
