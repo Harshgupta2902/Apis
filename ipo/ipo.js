@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
     const response = await axios.get(url);
     const $ = cheerio.load(response.data);
 
-    const upcomingIpos = $("table tbody tr")
+    const ipos = $("table tbody tr")
       .slice(1)
       .map((index, row) => {
         const columns = $(row).find("td");
@@ -40,6 +40,12 @@ router.get("/", async (req, res) => {
         };
       })
       .get();
+    const upcomingIpos = ipos.filter(
+      (ipo) =>
+        ipo.link !== "undefined" &&
+        ipo.slug !== "undefined" &&
+        ipo.company_name !== "Company Name"
+    );
 
     res.json({ upcomingIpos });
   } catch (error) {
@@ -48,4 +54,4 @@ router.get("/", async (req, res) => {
   }
 });
 
-module.exports = router;  
+module.exports = router;
