@@ -73,7 +73,10 @@ router.get("/", async (req, res) => {
               ipo_gmp: rowData["ipo gmp"].replaceAll("₹-", "-") || "N/A",
               price: rowData["price"].replaceAll("₹-", "-") || "N/A",
               gain: rowData["gain"].replaceAll("-%", "-") || "N/A",
-              date: rowData["date"].toLowerCase().replaceAll("soon", "Coming Soon") || "N/A",
+              date:
+                rowData["date"]
+                  .toLowerCase()
+                  .replaceAll("soon", "Coming Soon") || "N/A",
             };
             Gmp.push(formattedTable);
           } else {

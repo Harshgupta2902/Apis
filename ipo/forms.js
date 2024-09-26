@@ -3,7 +3,7 @@
 const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
-const { generateSlugFromUrl } = require("../utils");
+const { generateSlugFromUrl, sortEntriesByDate } = require("../utils");
 
 const router = express.Router();
 
@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
     const html = response.data;
     const $ = cheerio.load(html);
     const table = $("table");
-    const forms = [];
+    const formsData = [];
     const headers = [];
 
     // Extract headers
@@ -53,8 +53,10 @@ router.get("/", async (req, res) => {
         link: rowData[1],
         slug: generateSlugFromUrl(`${rowData[1]}`),
       };
-      forms.push(formattedTable);
+      formsData.push(formattedTable);
     });
+
+    const forms = sortEntriesByDate(formsData);
 
     res.json({ forms });
   } catch (error) {
