@@ -7,7 +7,6 @@ const { generateSlugFromUrl, sortEntriesByDate } = require("../utils");
 
 const router = express.Router();
 
-
 router.get("/", async (req, res) => {
   try {
     const url = "https://ipowatch.in/ipo-grey-market-premium-latest-ipo-gmp/";
@@ -55,22 +54,31 @@ router.get("/", async (req, res) => {
 
           // Safeguard check
           const companyNameObj = rowData["upcoming ipo"];
-            if (companyNameObj && typeof companyNameObj === "object") {
-              const formattedTable = {
-                company_name: companyNameObj.text || "N/A",
-                link: companyNameObj.link || "#",
-                type: rowData["type"] || "N/A",
-                ipo_gmp: rowData["ipo gmp"].replaceAll("₹-", "-") || "N/A",
-                price: rowData["price"] || "N/A",
-                gain: rowData["gain"].replaceAll("-%", "-") || "N/A",
-                date: rowData["date"] || "N/A",
-                slug: generateSlugFromUrl(companyNameObj.link || "#"),
-              };
-              Gmp.push(formattedTable);
-              console.log(formattedTable);
-            } else {
-              console.error("MainIPO Name is missing or incorrect", rowData);
-            }
+          if (companyNameObj && typeof companyNameObj === "object") {
+            const formattedTable = {
+              company_name: companyNameObj.text || "N/A",
+              link: companyNameObj.link || "#",
+              type: rowData["type"] || "N/A",
+              ipo_gmp: rowData["ipo gmp"].replaceAll("₹-", "-") || "N/A",
+              price: rowData["price"] || "N/A",
+              gain: rowData["gain"].replaceAll("-%", "-") || "N/A",
+              date: rowData["date"] || "N/A",
+              slug: generateSlugFromUrl(companyNameObj.link || "#"),
+            };
+            Gmp.push(formattedTable);
+          } else if (typeof companyNameObj === "string") {
+            const formattedTable = {
+              company_name: rowData["upcoming ipo"] || "N/A",
+              type: rowData["type"] || "N/A",
+              ipo_gmp: rowData["ipo gmp"].replaceAll("₹-", "-") || "N/A",
+              price: rowData["price"].replaceAll("₹-", "-") || "N/A",
+              gain: rowData["gain"].replaceAll("-%", "-") || "N/A",
+              date: rowData["date"].toLowerCase().replaceAll("soon", "Coming Soon") || "N/A",
+            };
+            Gmp.push(formattedTable);
+          } else {
+            console.error("MainIPO Name is missing or incorrect", rowData);
+          }
         });
 
       // Locate the specific h2 element
@@ -120,9 +128,9 @@ router.get("/", async (req, res) => {
             const formattedTable = {
               company_name: companyNameObj.text || "N/A",
               link: companyNameObj.link || "#",
-              ipo_gmp: rowData["gmp rate"] || "N/A",
-              price: rowData["price"] || "N/A",
-              listed: rowData["listed"] || "N/A",
+              ipo_gmp: rowData["ipo price"] || "N/A",
+              price: rowData["ipo gmp"] || "N/A",
+              listed: rowData["listing price"] || "N/A",
               // date: rowData["date"] || "N/A",
               // type: rowData["type"] || "N/A",
               slug: generateSlugFromUrl(companyNameObj.link || "#"),
@@ -133,8 +141,7 @@ router.get("/", async (req, res) => {
           }
         });
 
-        const gmp = sortEntriesByDate(Gmp);
-
+      const gmp = sortEntriesByDate(Gmp);
 
       res.json({ gmp, oldGmp });
     } else {
