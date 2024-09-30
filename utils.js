@@ -45,8 +45,21 @@ const sortEntriesByDate = (entries) => {
 };
 
 
+const formatDate = (dateStr) => {
+  if (!dateStr) return '-'; // Return '-' if date is missing
+  const parts = dateStr.split(' ');
+  if (parts.length >= 2) {
+      const day = parts[1].replace(',', ''); // Remove comma
+      const month = parts[0]; // Month is the first part
+      return `${day} ${month}`; // Return formatted date
+  }
+  return dateStr; // Return original string if it doesn't match expected format
+};
+
+
 
 module.exports = {
   generateSlugFromUrl,
-  sortEntriesByDate
+  sortEntriesByDate,
+  formatDate
 };
