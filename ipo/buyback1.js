@@ -39,7 +39,7 @@ router.get("/", async (req, res) => {
         buyback.push(rowData);
       }
     });
-    console.log({buyback});
+    res.json({buyback});
   } catch (error) {
     console.error("Error fetching data:", error);
   }
