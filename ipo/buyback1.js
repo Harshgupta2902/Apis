@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
     const rows = $("table tbody tr");
 
     // Extract data from each row
-    const tableData = [];
+    const buyback = [];
 
     rows.each((index, row) => {
       const columns = $(row).find("td");
@@ -36,11 +36,10 @@ router.get("/", async (req, res) => {
           issueSizeShares: $(columns[7]).text().trim(),
           issueSizeAmount: $(columns[8]).text().trim(),
         };
-        tableData.push(rowData);
+        buyback.push(rowData);
       }
     });
-    res.json(tableData);
-    console.log(tableData);
+    console.log({buyback});
   } catch (error) {
     console.error("Error fetching data:", error);
   }
