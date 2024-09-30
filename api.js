@@ -42,6 +42,7 @@ app.use((req, res, next) => {
 
 const ipoService = require("./ipo/ipo");
 const buybackService = require("./ipo/buyback");
+const buyback1 = require("./ipo/buyback1");
 const formsService = require("./ipo/forms");
 const gmpService = require("./ipo/gmp");
 const mainService = require("./ipo/main");
@@ -81,6 +82,7 @@ app.use("/api/main", cacheMiddleware, mainService);
 app.use("/api/sme", cacheMiddleware, smeService);
 app.use("/api/gmp", cacheMiddleware, gmpService);
 app.use("/api/buyback", cacheMiddleware, buybackService);
+app.use("/api/buyback1", cacheMiddleware, buyback1);
 app.use("/api/forms", cacheMiddleware, formsService);
 app.use("/api/subs", cacheMiddleware, subsService);
 app.use("/api/getDetails", cacheMiddleware, details);
