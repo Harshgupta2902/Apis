@@ -123,6 +123,7 @@ const cacheKeysToClear = [
   "/api/sme",
   "/api/gmp",
   "/api/buyback",
+  "/api/buyback1",
   "/api/forms",
   "/api/subs",
   "/api/getAdditionalIpo",

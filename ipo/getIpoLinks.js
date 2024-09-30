@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
     await Promise.all([
       axios.get("https://apis-iota-five.vercel.app/api/ipo"),
       axios.get("https://apis-iota-five.vercel.app/api/gmp"),
-      axios.get("https://apis-iota-five.vercel.app/api/buyback"),
+      // axios.get("https://apis-iota-five.vercel.app/api/buyback"),
       axios.get("https://apis-iota-five.vercel.app/api/sme"),
     ]);
 
