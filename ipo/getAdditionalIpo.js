@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const [ipoResponse, gmpResponse, buybackResponse, smeResponse] =
+    const [ipoResponse, gmpResponse, smeResponse] =
       await Promise.all([
         axios.get("https://apis-iota-five.vercel.app/api/ipo"),
         axios.get("https://apis-iota-five.vercel.app/api/gmp"),
@@ -15,7 +15,6 @@ router.get("/", async (req, res) => {
 
     console.log("IPO Api Hits SuccessFully :");
     console.log("GMP Api Hits SuccessFully :");
-    console.log("Buyback Api Hits SuccessFully :");
     console.log("SME Api Hits SuccessFully :");
 
     // Combine the data
@@ -26,9 +25,7 @@ router.get("/", async (req, res) => {
       gmp: Array.isArray(gmpResponse.data?.gmp)
         ? gmpResponse.data.gmp.slice(0, 6)
         : [],
-      buyback: Array.isArray(buybackResponse.data?.buyback)
-        ? buybackResponse.data.buyback.slice(0, 6)
-        : [],
+        
       sme: Array.isArray(smeResponse.data?.smeData)
         ? smeResponse.data.smeData.slice(0, 6)
         : [],
