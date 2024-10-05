@@ -2,12 +2,10 @@ const { db } = require("../firebase");
 const express = require("express");
 const router = express.Router();
 
-// Route to get NAV data
 router.get("/:slug", async (req, res) => {
   try {
     const slug = req.params.slug;
 
-    // Retrieve blog post data from Firestore
     const doc = await db.collection("blogs").doc(slug).get();
 
     if (!doc.exists) {
