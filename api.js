@@ -68,6 +68,11 @@ const getBlogsLinks = require("./blogs/getBlogsLinks");
 
 const getMetaData = require("./meta-data");
 
+
+
+const insertMfScreener = require("./archieve/insertScreener");
+const getisin = require("./archieve/getisin");
+
 // const getIfsc = require("./others/checkIfsc");
 // const geBankDetails = require("./others/geBankDetails");
 
@@ -105,6 +110,10 @@ app.use("/api/getIpoLinks", getIpoLinks);
 app.use("/api/getBlogsLinks", getBlogsLinks);
 app.use("/api/getMfLinks", getMfLinks);
 app.use("/api/getNfoLinks", getNfoLinks);
+
+
+app.use("/api/insertMfScreener", cacheMiddleware, insertMfScreener);
+app.use("/api/getisin", cacheMiddleware, getisin);
 
 // app.use("/api/getIfsc", getIfsc);
 // app.use("/api/geBankDetails", geBankDetails);
@@ -147,13 +156,9 @@ app.listen(4000, () => {
 //   cache.flushAll();
 // });
 
-// app.use("/api/insertMfScreener", cacheMiddleware, insertMfScreener);
-// app.use("/api/getisin", cacheMiddleware, getisin);
 // app.use("/api/insertNav", cacheMiddleware, insertNav);
 // app.use("/api/checkPan", cacheMiddleware, checkPan);
 
-// const insertMfScreener = require("./mf/insertScreener");
-// const getisin = require("./mf/getisin");
 // const insertNav = require("./mf/insertNav");
 // const getMfScreener = require("./mf/getMfScreener");
 // const checkPan = require("./others/checkPan");

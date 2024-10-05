@@ -1,4 +1,4 @@
-const db = require("../firebase");
+const { db } = require("../firebase");
 const express = require("express");
 const router = express.Router();
 
@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-const getIsin = async (isin) => {
+const getIsin = async () => {
   try {
     const docRef = db.collection("mfscreener").doc("data");
     const doc = await docRef.get();

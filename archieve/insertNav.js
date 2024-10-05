@@ -45,7 +45,7 @@ const insertData = async (isin, navData) => {
     const docRef = db.collection("ISINs").doc(isin);
     const doc = await docRef.get();
     if (doc.exists) {
-      await docRef.update({ isin: navData }); // Use update instead of delete-insert if needed
+      await docRef.update({ isin: navData });
       console.log(`Existing data for ISIN ${isin} updated`);
     } else {
       await docRef.set({ isin: navData });
@@ -57,7 +57,7 @@ const insertData = async (isin, navData) => {
   }
 };
 
-const fetchAndInsertData = async (isin) => {
+const fetchAndInsertData = async (isin) => {    
   try {
     const response = await axios.get(
       `https://www.moneycontrol.com/mc/widget/mfnavonetimeinvestment/get_chart_value?isin=${isin}&dur=ALL`
