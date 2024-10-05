@@ -64,7 +64,7 @@ router.post(
         metadata: { contentType: req.file.mimetype },
       });
 
-      const imageUrl = `https://storage.googleapis.com/${bucket.name}/${filename}`;
+      const imageUrl = `https://storage.googleapis.com/ipotec-web.appspot.com/${filename}`;
       const publishedAt = new Date();
 
       const blogData = {
