@@ -67,6 +67,7 @@ const getblogs = require("./blogs/getblogs");
 const getBlogsLinks = require("./blogs/getBlogsLinks");
 
 const getMetaData = require("./meta-data");
+const scrap = require("./scrap");
 
 // const getIfsc = require("./others/checkIfsc");
 // const geBankDetails = require("./others/geBankDetails");
@@ -105,6 +106,7 @@ app.use("/api/getIpoLinks", getIpoLinks);
 app.use("/api/getBlogsLinks", getBlogsLinks);
 app.use("/api/getMfLinks", getMfLinks);
 app.use("/api/getNfoLinks", getNfoLinks);
+app.use("/api/scrap", scrap);
 
 // app.use("/api/getIfsc", getIfsc);
 // app.use("/api/geBankDetails", geBankDetails);
