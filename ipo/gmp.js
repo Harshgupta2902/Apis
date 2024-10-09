@@ -10,68 +10,75 @@ const {
 } = require("../utils");
 
 const router = express.Router();
-
 const addActiveFlag = (ipoList) => {
-  const currentDate = new Date();  // Get the current date
+  const currentDate = new Date();
 
   console.log("Current Date:", currentDate);
 
-  return ipoList.map(ipo => {
+  const updatedIpoList = ipoList.map((ipo) => {
     let isActive = false;
 
     if (ipo.date === "Coming Soon") {
-      isActive = false;  // "Coming Soon" is always inactive
-      console.log(`IPO: ${ipo.company_name} - Date: ${ipo.date} (Coming Soon) -> Active: ${isActive}`);
+      isActive = false;
+      console.log(
+        `IPO: ${ipo.company_name} - Date: ${ipo.date} (Coming Soon) -> Active: ${isActive}`
+      );
     } else {
       const [dayRange, month] = ipo.date.split(" ");
 
       if (dayRange.includes("-")) {
-        console.log(month);
-        
         const [startDay, endDay] = dayRange.split("-");
         const monthNumber = monthToNumber(month);
-        console.log(month);
-        console.log(monthNumber);
 
         const startDate = new Date(2024, monthNumber - 1, parseInt(startDay));
         const endDate = new Date(2024, monthNumber - 1, parseInt(endDay));
 
-        console.log(`IPO: ${ipo.company_name} - Start Date: ${startDate}, End Date: ${endDate}`);
+        console.log(
+          `IPO: ${ipo.company_name} - Start Date: ${startDate}, End Date: ${endDate}`
+        );
 
-        // Check if current date is within the date range or if it's a future date
         if (currentDate >= startDate && currentDate <= endDate) {
           isActive = true;
         } else if (currentDate < startDate) {
-          isActive = true;  // Future date
+          isActive = true;
         } else {
-          isActive = false; // Past date
+          isActive = false;
         }
 
         console.log(`IPO: ${ipo.company_name} - Active: ${isActive}`);
       } else {
-        // Single-day IPO case
-        const singleDate = new Date(2024, monthToNumber(month) - 1, parseInt(dayRange));
+        const singleDate = new Date(
+          2024,
+          monthToNumber(month) - 1,
+          parseInt(dayRange)
+        );
 
         console.log(`IPO: ${ipo.company_name} - Single Date: ${singleDate}`);
 
-        if (currentDate.getTime() === singleDate.getTime() || currentDate < singleDate) {
-          isActive = true;  // Today or future
+        if (
+          currentDate.getTime() === singleDate.getTime() ||
+          currentDate < singleDate
+        ) {
+          isActive = true;
         } else {
-          isActive = false; // Past
+          isActive = false;
         }
-
         console.log(`IPO: ${ipo.company_name} - Active: ${isActive}`);
       }
     }
 
     return {
       ...ipo,
-      active: isActive
+      active: isActive,
     };
   });
+
+  const filteredIpoList = updatedIpoList.filter(
+    (ipo) =>
+      !(ipo.active === false && new Date(ipo.date.split(" ")[0]) < currentDate)
+  );
+  return filteredIpoList;
 };
-
-
 
 router.get("/", async (req, res) => {
   try {
