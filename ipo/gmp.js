@@ -20,9 +20,7 @@ const addActiveFlag = (ipoList) => {
 
     if (ipo.date === "Coming Soon") {
       isActive = false;
-      console.log(
-        `IPO: ${ipo.company_name} - Date: ${ipo.date} (Coming Soon) -> Active: ${isActive}`
-      );
+      console.log();
     } else {
       const [dayRange, month] = ipo.date.split(" ");
 
@@ -33,9 +31,7 @@ const addActiveFlag = (ipoList) => {
         const startDate = new Date(2024, monthNumber - 1, parseInt(startDay));
         const endDate = new Date(2024, monthNumber - 1, parseInt(endDay));
 
-        console.log(
-          `IPO: ${ipo.company_name} - Start Date: ${startDate}, End Date: ${endDate}`
-        );
+        console.log();
 
         if (currentDate >= startDate && currentDate <= endDate) {
           isActive = true;
@@ -44,16 +40,12 @@ const addActiveFlag = (ipoList) => {
         } else {
           isActive = false;
         }
-
-        console.log(`IPO: ${ipo.company_name} - Active: ${isActive}`);
       } else {
         const singleDate = new Date(
           2024,
           monthToNumber(month) - 1,
           parseInt(dayRange)
         );
-
-        console.log(`IPO: ${ipo.company_name} - Single Date: ${singleDate}`);
 
         if (
           currentDate.getTime() === singleDate.getTime() ||
@@ -63,7 +55,6 @@ const addActiveFlag = (ipoList) => {
         } else {
           isActive = false;
         }
-        console.log(`IPO: ${ipo.company_name} - Active: ${isActive}`);
       }
     }
 
@@ -73,10 +64,16 @@ const addActiveFlag = (ipoList) => {
     };
   });
 
-  const filteredIpoList = updatedIpoList.filter(
-    (ipo) =>
-      !(ipo.active === false && new Date(ipo.date.split(" ")[0]) < currentDate)
-  );
+  const filteredIpoList = updatedIpoList.filter((ipo) => {
+    const [startDate, endDate] = ipo.date.split(" ")[0].split("-").map(Number);
+    const month = monthToNumber(ipo.date.split(" ")[1]);
+
+    const ipoDate = new Date(currentDate.getFullYear(), month - 1, endDate);
+    // console.log(`month: ${month}   ${ipo.date.split(" ")[1]}   endate:: ${endDate}   ipodate: ${ipoDate}   year: ${currentDate.getFullYear()}`);
+
+    return !(ipoDate < currentDate);
+  });
+
   return filteredIpoList;
 };
 
