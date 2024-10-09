@@ -3,9 +3,75 @@
 const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
-const { generateSlugFromUrl, sortEntriesByDate } = require("../utils");
+const {
+  generateSlugFromUrl,
+  sortEntriesByDate,
+  monthToNumber,
+} = require("../utils");
 
 const router = express.Router();
+
+const addActiveFlag = (ipoList) => {
+  const currentDate = new Date();  // Get the current date
+
+  console.log("Current Date:", currentDate);
+
+  return ipoList.map(ipo => {
+    let isActive = false;
+
+    if (ipo.date === "Coming Soon") {
+      isActive = false;  // "Coming Soon" is always inactive
+      console.log(`IPO: ${ipo.company_name} - Date: ${ipo.date} (Coming Soon) -> Active: ${isActive}`);
+    } else {
+      const [dayRange, month] = ipo.date.split(" ");
+
+      if (dayRange.includes("-")) {
+        console.log(month);
+        
+        const [startDay, endDay] = dayRange.split("-");
+        const monthNumber = monthToNumber(month);
+        console.log(month);
+        console.log(monthNumber);
+
+        const startDate = new Date(2024, monthNumber - 1, parseInt(startDay));
+        const endDate = new Date(2024, monthNumber - 1, parseInt(endDay));
+
+        console.log(`IPO: ${ipo.company_name} - Start Date: ${startDate}, End Date: ${endDate}`);
+
+        // Check if current date is within the date range or if it's a future date
+        if (currentDate >= startDate && currentDate <= endDate) {
+          isActive = true;
+        } else if (currentDate < startDate) {
+          isActive = true;  // Future date
+        } else {
+          isActive = false; // Past date
+        }
+
+        console.log(`IPO: ${ipo.company_name} - Active: ${isActive}`);
+      } else {
+        // Single-day IPO case
+        const singleDate = new Date(2024, monthToNumber(month) - 1, parseInt(dayRange));
+
+        console.log(`IPO: ${ipo.company_name} - Single Date: ${singleDate}`);
+
+        if (currentDate.getTime() === singleDate.getTime() || currentDate < singleDate) {
+          isActive = true;  // Today or future
+        } else {
+          isActive = false; // Past
+        }
+
+        console.log(`IPO: ${ipo.company_name} - Active: ${isActive}`);
+      }
+    }
+
+    return {
+      ...ipo,
+      active: isActive
+    };
+  });
+};
+
+
 
 router.get("/", async (req, res) => {
   try {
@@ -144,7 +210,20 @@ router.get("/", async (req, res) => {
           }
         });
 
-      const gmp = sortEntriesByDate(Gmp);
+      const sortedGmp = sortEntriesByDate(Gmp);
+
+      const finalgmp = sortedGmp.sort((a, b) => {
+        const gmpA = a.gain.includes("%")
+          ? parseInt(a.gain.replace("%", ""))
+          : 0;
+        const gmpB = b.gain.includes("%")
+          ? parseInt(b.gain.replace("%", ""))
+          : 0;
+
+        return gmpB - gmpA;
+      });
+
+      const gmp = addActiveFlag(finalgmp);
 
       res.json({ gmp, oldGmp });
     } else {
