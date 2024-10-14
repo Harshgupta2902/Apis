@@ -7,7 +7,6 @@ const cheerio = require("cheerio");
 
 router.get("/", async (req, res) => {
   try {
-    // Get the URLs from the query parameters
     const url1 =
       "https://www.chittorgarh.com/report/ipo-subscription-status-live-bidding-data-bse-nse/21/?year=2024";
     const url2 =
@@ -19,7 +18,10 @@ router.get("/", async (req, res) => {
     const response2 = await axios.get(url2);
     const data2 = await extractData(response2.data);
 
-    const combinedData = { ipo_subscription_data: data1, sme_subscription_data: data2 };
+    const combinedData = {
+      ipo_subscription_data: data1,
+      sme_subscription_data: data2,
+    };
 
     res.json(combinedData);
   } catch (error) {
@@ -71,10 +73,9 @@ function mapHeader(header) {
     "Employee (x)": "employee_x",
     "Others (x)": "others_x",
     "Total (x)": "total_x",
-    "Applications": "applications"
+    Applications: "applications",
   };
   return headerMap[header] || header;
 }
-
 
 module.exports = router;
