@@ -123,28 +123,35 @@ router.get("/", async (req, res) => {
             });
 
           // Safeguard check
-          const companyNameObj = rowData["current ipos"];
+          
+
+
+const companyNameObj = rowData["current ipos"];
           if (companyNameObj && typeof companyNameObj === "object") {
             const formattedTable = {
               company_name: companyNameObj.text || "N/A",
               link: companyNameObj.link || "#",
               type: rowData["type"] || "N/A",
-              ipo_gmp: rowData["ipo gmp"].replaceAll("₹-", "-") || "N/A",
-              price: rowData["price"] || "N/A",
-              gain: rowData["gain"].replaceAll("-%", "-") || "N/A",
-              date: rowData["date"] || "N/A",
+              ipo_gmp: rowData["ipo gmp"] === "₹-" ? null : rowData["ipo gmp"],
+              price:
+                rowData["price band"] === "₹-" ? null : rowData["price band"],
+              gain:
+                rowData["listinggain"] === "-%" ? null : rowData["listinggain"],
+              date: rowData["ipo date"] || "N/A",
               slug: generateSlugFromUrl(companyNameObj.link || "#"),
             };
             Gmp.push(formattedTable);
           } else if (typeof companyNameObj === "string") {
             const formattedTable = {
-              company_name: rowData["upcoming ipo"] || "N/A",
+              company_name: rowData["latest ipos"] || "N/A",
               type: rowData["type"] || "N/A",
-              ipo_gmp: rowData["ipo gmp"].replaceAll("₹-", "-") || "N/A",
-              price: rowData["price"].replaceAll("₹-", "-") || "N/A",
-              gain: rowData["gain"].replaceAll("-%", "-") || "N/A",
+              ipo_gmp: rowData["ipo gmp"] === "₹-" ? null : rowData["ipo gmp"],
+              price:
+                rowData["price band"] === "₹-" ? null : rowData["price band"],
+              gain:
+                rowData["listinggain"] === "-%" ? null : rowData["listinggain"],
               date:
-                rowData["date"]
+                rowData["ipo date"]
                   .toLowerCase()
                   .replaceAll("soon", "Coming Soon") || "N/A",
             };
@@ -153,6 +160,12 @@ router.get("/", async (req, res) => {
             console.error("MainIPO Name is missing or incorrect", rowData);
           }
         });
+
+
+
+
+
+      
 
       // Locate the specific h2 element
       const heading = $(
