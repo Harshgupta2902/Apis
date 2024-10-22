@@ -63,7 +63,7 @@ const addActiveFlag = (ipoList) => {
       active: isActive,
     };
   });
-  
+
   return updatedIpoList;
   // const filteredIpoList = updatedIpoList.filter((ipo) => {
   //   const [startDate, endDate] = ipo.date.split(" ")[0].split("-").map(Number);
@@ -130,10 +130,15 @@ router.get("/", async (req, res) => {
               company_name: companyNameObj.text || "N/A",
               link: companyNameObj.link || "#",
               type: rowData["type"] || "N/A",
-              ipo_gmp: rowData["ipo gmp"] || "N/A",
-              price: rowData["price band"] || "N/A",
-              gain: rowData["listinggain"] || "N/A",
-              date: rowData["ipo date"] || "N/A",
+              ipo_gmp: rowData["ipo gmp"] === "₹-" ? "-" : rowData["ipo gmp"],
+              price:
+                rowData["price band"] === "₹-" ? "-" : rowData["price band"],
+              gain:
+                rowData["listinggain"] === "-%" ? "-" : rowData["listinggain"],
+              date:
+                rowData["ipo date"]
+                  .toLowerCase()
+                  .replaceAll("soon", "Coming Soon") || "N/A",
               slug: generateSlugFromUrl(companyNameObj.link || "#"),
             };
             Gmp.push(formattedTable);
@@ -141,9 +146,11 @@ router.get("/", async (req, res) => {
             const formattedTable = {
               company_name: rowData["upcoming ipo"] || "N/A",
               type: rowData["type"] || "N/A",
-              ipo_gmp: rowData["ipo gmp"].replaceAll("₹-", "-") || "N/A",
-              price: rowData["price band"] || "N/A",
-              gain: rowData["listinggain"] || "N/A",
+              ipo_gmp: rowData["ipo gmp"] === "₹-" ? "-" : rowData["ipo gmp"],
+              price:
+                rowData["price band"] === "₹-" ? "-" : rowData["price band"],
+              gain:
+                rowData["listinggain"] === "-%" ? "-" : rowData["listinggain"],
               date:
                 rowData["ipo date"]
                   .toLowerCase()
