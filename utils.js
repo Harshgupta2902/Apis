@@ -28,13 +28,12 @@ const monthToNumber = (month) => {
 
 const sortEntriesByDate = (entries) => {
   return entries.sort((a, b) => {
-    // Handle "Coming Soon" entries
     if (a.date === "Coming Soon" && b.date === "Coming Soon") {
-      return 0; // Both are "Coming Soon"
+      return 0; 
     } else if (a.date === "Coming Soon") {
-      return 1; // a should go after b
+      return 1; 
     } else if (b.date === "Coming Soon") {
-      return -1; // b should go after a
+      return -1;
     }
 
     // If neither is "Coming Soon", we need to sort by the date

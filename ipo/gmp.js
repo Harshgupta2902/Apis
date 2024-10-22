@@ -63,18 +63,19 @@ const addActiveFlag = (ipoList) => {
       active: isActive,
     };
   });
+  
+  return updatedIpoList;
+  // const filteredIpoList = updatedIpoList.filter((ipo) => {
+  //   const [startDate, endDate] = ipo.date.split(" ")[0].split("-").map(Number);
+  //   const month = monthToNumber(ipo.date.split(" ")[1]);
 
-  const filteredIpoList = updatedIpoList.filter((ipo) => {
-    const [startDate, endDate] = ipo.date.split(" ")[0].split("-").map(Number);
-    const month = monthToNumber(ipo.date.split(" ")[1]);
+  //   const ipoDate = new Date(currentDate.getFullYear(), month - 1, endDate);
+  //   // console.log(`month: ${month}   ${ipo.date.split(" ")[1]}   endate:: ${endDate}   ipodate: ${ipoDate}   year: ${currentDate.getFullYear()}`);
 
-    const ipoDate = new Date(currentDate.getFullYear(), month - 1, endDate);
-    // console.log(`month: ${month}   ${ipo.date.split(" ")[1]}   endate:: ${endDate}   ipodate: ${ipoDate}   year: ${currentDate.getFullYear()}`);
+  //   return !(ipoDate < currentDate);
+  // });
 
-    return !(ipoDate < currentDate);
-  });
-
-  return filteredIpoList;
+  // return filteredIpoList;
 };
 
 router.get("/", async (req, res) => {
@@ -215,19 +216,7 @@ router.get("/", async (req, res) => {
         });
 
       const sortedGmp = sortEntriesByDate(Gmp);
-
-      const finalgmp = sortedGmp.sort((a, b) => {
-        const gmpA = a.gain.includes("%")
-          ? parseInt(a.gain.replace("%", ""))
-          : 0;
-        const gmpB = b.gain.includes("%")
-          ? parseInt(b.gain.replace("%", ""))
-          : 0;
-
-        return gmpB - gmpA;
-      });
-
-      const gmp = addActiveFlag(finalgmp);
+      const gmp = addActiveFlag(sortedGmp);
 
       res.json({ gmp, oldGmp });
     } else {
