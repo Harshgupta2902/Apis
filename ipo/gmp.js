@@ -63,19 +63,7 @@ const addActiveFlag = (ipoList) => {
       active: isActive,
     };
   });
-
   return updatedIpoList;
-  // const filteredIpoList = updatedIpoList.filter((ipo) => {
-  //   const [startDate, endDate] = ipo.date.split(" ")[0].split("-").map(Number);
-  //   const month = monthToNumber(ipo.date.split(" ")[1]);
-
-  //   const ipoDate = new Date(currentDate.getFullYear(), month - 1, endDate);
-  //   // console.log(`month: ${month}   ${ipo.date.split(" ")[1]}   endate:: ${endDate}   ipodate: ${ipoDate}   year: ${currentDate.getFullYear()}`);
-
-  //   return !(ipoDate < currentDate);
-  // });
-
-  // return filteredIpoList;
 };
 
 router.get("/", async (req, res) => {
