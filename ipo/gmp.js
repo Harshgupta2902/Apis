@@ -120,9 +120,9 @@ router.get("/", async (req, res) => {
               type: rowData["type"] || "N/A",
               ipo_gmp: rowData["ipo gmp"] === "₹-" ? "-" : rowData["ipo gmp"],
               price:
-                rowData["price band"] === "₹-" ? "-" : rowData["price band"],
+                rowData["price"] === "₹-" ? "-" : rowData["price"],
               gain:
-                rowData["listinggain"] === "-%" ? "-" : rowData["listinggain"],
+                rowData["gain"] === "-%" ? "-" : rowData["gain"],
               date:
                 rowData["ipo date"]
                   .toLowerCase()
@@ -132,13 +132,13 @@ router.get("/", async (req, res) => {
             Gmp.push(formattedTable);
           } else if (typeof companyNameObj === "string") {
             const formattedTable = {
-              company_name: rowData["upcoming ipo"] || "N/A",
+              company_name: rowData["current ipos"] || "N/A",
               type: rowData["type"] || "N/A",
               ipo_gmp: rowData["ipo gmp"] === "₹-" ? "-" : rowData["ipo gmp"],
               price:
-                rowData["price band"] === "₹-" ? "-" : rowData["price band"],
+                rowData["price"] === "₹-" ? "-" : rowData["price"],
               gain:
-                rowData["listinggain"] === "-%" ? "-" : rowData["listinggain"],
+                rowData["gain"] === "-%" ? "-" : rowData["gain"],
               date:
                 rowData["ipo date"]
                   .toLowerCase()
