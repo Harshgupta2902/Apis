@@ -110,7 +110,7 @@ router.get("/", async (req, res) => {
                 rowData[header] = $(column).text().trim();
               }
             });
-
+            console.log(rowData);
           // Safeguard check
           const companyNameObj = rowData["current ipos"];
           if (companyNameObj && typeof companyNameObj === "object") {
@@ -206,9 +206,9 @@ router.get("/", async (req, res) => {
           }
         });
 
-      const sortedGmp = sortEntriesByDate(Gmp);
-      const gmp = addActiveFlag(sortedGmp);
-
+      // const sortedGmp = sortEntriesByDate(Gmp);
+      const gmp = Gmp;
+        
       res.json({ gmp, oldGmp });
     } else {
       throw new Error("Failed to fetch the page");
